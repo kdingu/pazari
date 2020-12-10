@@ -1,25 +1,18 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { checkoutActions } from "../../store/actions/";
 
-const Checkout = ({ cart, generateCheckoutToken }) => {
+const Checkout = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    generateCheckoutToken(cart.id);
-  }, [generateCheckoutToken, cart.id]);
+    dispatch(checkoutActions.generateCheckoutToken(cart.id));
+  }, [cart.id, dispatch]);
 
   return (
     <div style={{ border: "5px solid red", marginTop: 300 }}>checkout</div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  generateCheckoutToken: (cartId) => {
-    dispatch(checkoutActions.generateCheckoutToken(cartId));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+export default Checkout;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions, cartActions } from "../../store/actions";
 import { Container, Grid, CircularProgress, Button } from "@material-ui/core";
