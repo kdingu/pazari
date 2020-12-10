@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import "fontsource-roboto";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { fetchProductsAsync } from "./store/actions/products/actions";
+import { fetchCartAsync } from "./store/actions/cart/actions";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Navbar, Home, Products, Cart, Checkout } from "./components";
+import store from "./store";
+import { ThemeProvider } from "@material-ui/core";
+import theme from "./lib/MuiTheme/theme";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    console.log("app mounted");
+    const unsubStore = store.subscribe(() => console.log("App.js - didUpdate"));
+
+    dispatch(fetchProductsAsync());
+    dispatch(fetchCartAsync());
+
+    return unsubStore;
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <CssBaseline />
+        <Navbar />
+
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/products">
+            <Products />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+          <Route exact path="/checkout">
+            <Checkout />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
