@@ -11,5 +11,5 @@ export default combineReducers({
   products: productsReducer,
   categories: categoriesReducer,
   cart: cartReducer,
-  checkoutToken: checkoutReducer,
+  checkout: checkoutReducer,
 });

@@ -26,7 +26,7 @@ const Products = () => {
 
   const ProductsGrid = () => (
     <Grid container>
-      <Grid container item spacing={4} className={classes.big}>
+      <Grid container item spacing={2} className={classes.big}>
         {data.length ? (
           data.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>

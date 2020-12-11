@@ -15,15 +15,10 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case C.SET_PRODUCTS:
-      return {
-        ...payload,
-      };
+      return { ...payload };
 
     case C.APPEND_PRODUCTS:
-      return {
-        ...state,
-        ...payload,
-      };
+      return { ...state, ...payload };
 
     default:
       return state;
