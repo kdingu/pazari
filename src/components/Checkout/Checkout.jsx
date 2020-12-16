@@ -1,38 +1,76 @@
 import {
-  Button,
-  Container,
-  Grid,
   Paper,
-  TextField,
+  Stepper,
+  Step,
+  StepLabel,
   Typography,
+  CircularProgress,
+  Divider,
+  Button,
 } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import useStyles from "./styles";
+import AddressForm from "./AddressForm";
+import PaymentForm from "./PaymentForm";
 import { useDispatch, useSelector } from "react-redux";
 import { checkoutActions } from "../../store/actions/";
-import useStyles from "./styles";
-import { useForm, FormProvider } from "react-hook-form";
-import CheckoutForm from "./CheckoutForm";
+
+const steps = ["Adresa e dërgesës", "Detajet e pagesës"];
 
 const Checkout = () => {
-  const classes = useStyles();
-  const cart = useSelector((state) => state.cart);
-  const checkout = useSelector((state) => state.checkout);
   const dispatch = useDispatch();
+  const checkoutToken = useSelector((state) => state.checkout.checkoutToken);
 
-  const methods = useForm();
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = useState(0);
+  const [loadingCheckout, setLoadingCheckout] = useState(false);
 
   useEffect(() => {
-    dispatch(checkoutActions.generateCheckoutToken(cart.id));
-  }, [cart, dispatch]);
+    setLoadingCheckout(true);
+    dispatch(checkoutActions.generateCheckoutToken()) // create checkoutToken
+      .then(() => dispatch(checkoutActions.getShippingCountries())) // load available shipping countries for that token
+      .then(() => setLoadingCheckout(false));
+
+    return () => {
+      // reset select values if checkout is unmounted
+      dispatch(checkoutActions.setShippingCountry(""));
+      dispatch(checkoutActions.setShippingSubdivision(""));
+    };
+  }, []);
+
+  const Confirmation = () => <div>Confirm</div>;
+
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutId={checkoutToken.id} />
+    ) : (
+      <PaymentForm />
+    );
 
   return (
-    <Container className={classes.root}>
-      <div className={classes.toolbar} />
-      <Typography variant="h6" gutterBottom>
-        Detajet e blerjes
-      </Typography>
-      <CheckoutForm />
-    </Container>
+    <>
+      {loadingCheckout ? (
+        <div className={classes.loader}>
+          <CircularProgress />
+        </div>
+      ) : null}
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography variant="h4" align="center">
+            Arka
+          </Typography>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {steps.map((step) => (
+              <Step key={step}>
+                <StepLabel>{step}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length ? <Confirmation /> : <Form />}
+        </Paper>
+      </main>
+    </>
   );
 };
 

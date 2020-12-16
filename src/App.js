@@ -14,13 +14,19 @@ const App = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     console.log("app mounted");
-    const unsubStore = store.subscribe(() => console.log("App.js - didUpdate"));
+    const unsubStore = store.subscribe(() =>
+      console.log("App.js - redux didUpdate")
+    );
 
     dispatch(fetchProductsAsync());
     dispatch(fetchCartAsync());
 
     return unsubStore;
-  }, [dispatch]);
+  }, []);
+
+  React.useEffect(() => {
+    console.log("app update");
+  });
 
   return (
     <ThemeProvider theme={theme}>

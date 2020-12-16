@@ -10,6 +10,48 @@ export const setCheckout = (checkout) => ({
   },
 });
 
+export const setShippingCountries = (shippingCountries) => ({
+  type: C.SET_SHIPPING_COUNTRIES,
+  payload: {
+    shippingCountries: shippingCountries.countries,
+  },
+});
+
+export const setShippingCountry = (shippingCountry) => ({
+  type: C.SET_SHIPPING_COUNTRY,
+  payload: {
+    shippingCountry,
+  },
+});
+
+export const setShippingSubdivisions = (shippingSubdivisions) => ({
+  type: C.SET_SHIPPING_SUBDIVISIONS,
+  payload: {
+    shippingSubdivisions,
+  },
+});
+
+export const setShippingSubdivision = (shippingSubdivision) => ({
+  type: C.SET_SHIPPING_SUBDIVISION,
+  payload: {
+    shippingSubdivision,
+  },
+});
+
+export const setShippingOptions = (shippingOptions) => ({
+  type: C.SET_SHIPPING_OPTIONS,
+  payload: {
+    shippingOptions,
+  },
+});
+
+export const setShippingOption = (shippingOption) => ({
+  type: C.SET_SHIPPING_OPTION,
+  payload: {
+    shippingOption,
+  },
+});
+
 // thunks
 
 export const generateCheckoutToken = () => {
@@ -25,6 +67,53 @@ export const generateCheckoutToken = () => {
     } else {
       const checkout = { products: [] };
       dispatch(setCheckout(checkout));
+    }
+  };
+};
+
+export const getShippingCountries = () => {
+  return async (dispatch, getState) => {
+    const checkoutId = getState().checkout.checkoutToken.id || false;
+    if (checkoutId) {
+      const countries = await commerce.services.localeListShippingCountries(
+        checkoutId
+      );
+      dispatch(setShippingCountries(countries));
+    } else {
+      const countries = [];
+      dispatch(setShippingCountries(countries));
+    }
+  };
+};
+
+export const getShippingSubdivisions = (checkoutId, countryCode) => {
+  return async (dispatch) => {
+    const {
+      subdivisions,
+    } = await commerce.services.localeListShippingSubdivisions(
+      checkoutId,
+      countryCode
+    );
+    dispatch(setShippingSubdivisions(subdivisions));
+    return subdivisions;
+  };
+};
+
+export const getShippingOptions = (
+  checkoutId,
+  countryCode,
+  subdivision = null
+) => {
+  return async (dispatch) => {
+    try {
+      const options = await commerce.checkout.getShippingOptions(checkoutId, {
+        country: countryCode,
+        region: subdivision,
+      });
+      dispatch(setShippingOptions(options));
+      return options;
+    } catch (error) {
+      throw error;
     }
   };
 };

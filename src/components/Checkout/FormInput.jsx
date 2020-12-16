@@ -1,10 +1,9 @@
-import { Grid, TextField } from "@material-ui/core";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { TextField, Grid } from "@material-ui/core";
+import { useFormContext, Controller } from "react-hook-form";
 
-const FormInput = ({ name, label, required }) => {
+const FormInput = ({ name, label, required, color = "secondary" }) => {
   const { control } = useFormContext();
-
   return (
     <Grid item xs={12} sm={6}>
       <Controller
@@ -14,6 +13,8 @@ const FormInput = ({ name, label, required }) => {
         name={name}
         label={label}
         required={required}
+        color={color}
+        defaultValue=""
       />
     </Grid>
   );

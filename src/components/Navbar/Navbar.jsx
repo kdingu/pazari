@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import PopoverCart from "./PopoverCart/PopoverCart";
 import logo from "../../assests/pazari-logo.png";
@@ -8,7 +8,9 @@ import useStyles from "./styles";
 const Navbar = () => {
   const classes = useStyles();
 
-  return (
+  const { pathname } = useLocation();
+
+  return pathname !== "/checkout" ? (
     <>
       <AppBar className={classes.appBar} color="inherit">
         <Toolbar className={classes.constrictWidth}>
@@ -39,7 +41,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
     </>
-  );
+  ) : null;
 };
 
 export default Navbar;

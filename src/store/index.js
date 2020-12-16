@@ -6,15 +6,15 @@ const initialState = {
   products: { data: [], meta: {} },
   categories: [],
   cart: { line_items: [] },
-  checkout: {},
-  // snackbar: {
-  //   showSuccess: false,
-  //   showError: false,
-  //   message: "",
-  //   vertical: "bottom",
-  //   horizontal: "right",
-  // },
-  // loader: false,
+  checkout: {
+    checkoutToken: {},
+    shippingCountries: {},
+    shippingCountry: "",
+    shippingSubdivisions: {},
+    shippingSubdivision: "",
+    shippingOptions: [],
+    shippingOption: "",
+  },
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
