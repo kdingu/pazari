@@ -73,7 +73,7 @@ export default makeStyles((theme) => ({
     },
   },
   constrictWidth: {
-    maxWidth: MAX_CONTENT_WIDTH,
+    // maxWidth: MAX_CONTENT_WIDTH,
     width: "100%",
     margin: "auto",
   },

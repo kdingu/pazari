@@ -5,7 +5,7 @@ import { removeProductFromCartAsync } from "../../../../store/actions/cart/actio
 import PopoverCartItem from "./PopoverCartItem/PopoverCartItem";
 import useStyles from "./style";
 import { connect } from "react-redux";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const PopoverCartContent = ({
@@ -54,15 +54,24 @@ const PopoverCartContent = ({
             </Row>
           ))}
           <Row cssPosition="absolute" className={classes.footer}>
-            <Item position="right">
-              <Button
-                component={Link}
-                to="/checkout"
-                onClick={closePopoverCart}
-                className={classes.footerButton}
-              >
-                Bli
-              </Button>
+            <Item style={{ width: "100%" }}>
+              <Grid container alignItems="center">
+                <Grid item xs={10} align="left">
+                  <Typography variant="subtitle1" className={classes.subtotal}>
+                    Subtotali: {cart.subtotal.formatted_with_code}
+                  </Typography>
+                </Grid>
+                <Grid item xs={2} align="right">
+                  <Button
+                    component={Link}
+                    to="/checkout"
+                    onClick={closePopoverCart}
+                    className={classes.footerButton}
+                  >
+                    Bli
+                  </Button>
+                </Grid>
+              </Grid>
             </Item>
           </Row>
         </>

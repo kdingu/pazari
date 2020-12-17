@@ -54,4 +54,8 @@ export default makeStyles((theme) => ({
     width: "100%",
     height: generalMargin,
   },
+  subtotal: {
+    color: theme.palette.primary.contrastText,
+    paddingLeft: "1rem",
+  },
 }));

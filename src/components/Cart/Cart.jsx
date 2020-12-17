@@ -58,7 +58,7 @@ const Cart = () => {
             color="secondary"
             onClick={handleEmptyCart}
           >
-            Boshatise Karten
+            Boshatise Shportën
           </Button>
           <Button
             component={Link}
@@ -80,7 +80,7 @@ const Cart = () => {
     <Container className={classes.main}>
       <div className={classes.toolbar} />
       <Typography className={classes.title} variant="h4" gutterBottom>
-        Shporta Juaj
+        Shporta
       </Typography>
       {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
