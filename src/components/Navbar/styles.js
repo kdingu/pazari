@@ -1,5 +1,5 @@
 import { makeStyles, fade } from "@material-ui/core/styles";
-import { MAX_CONTENT_WIDTH } from "../../constant.js";
+// import { MAX_CONTENT_WIDTH } from "../../constant.js";
 // import navBarImage from "../../assests/pazari-pattern.jpg";
 
 const drawerWidth = 0;

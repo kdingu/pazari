@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   InputLabel,
   Select,
-  MenuItem,
   Button,
   Grid,
-  Typography,
   FormControl,
-  Input,
 } from "@material-ui/core";
-import { useForm, FormProvider, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { checkoutActions } from "../../store/actions";
@@ -125,11 +122,15 @@ const AddressForm = ({ checkoutId, next }) => {
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth required color="secondary">
                 <InputLabel>Shteti i dërgesës</InputLabel>
-                <Select value={country} onChange={handleCountryChange}>
+                <Select native value={country} onChange={handleCountryChange}>
+                  <option aria-label="None" value="" disabled />
                   {countriesArray.map(({ code, name }) => (
-                    <MenuItem key={code} value={code}>
+                    // <MenuItem key={code} value={code}>
+                    //   {name}
+                    // </MenuItem>
+                    <option key={code} value={code}>
                       {name}
-                    </MenuItem>
+                    </option>
                   ))}
                 </Select>
               </FormControl>
@@ -143,11 +144,19 @@ const AddressForm = ({ checkoutId, next }) => {
                 disabled={subdivisionsArray.length === 0}
               >
                 <InputLabel>Zona e dërgesës</InputLabel>
-                <Select value={subdivision} onChange={handleSubdivisionChange}>
+                <Select
+                  native
+                  value={subdivision}
+                  onChange={handleSubdivisionChange}
+                >
+                  <option aria-label="None" value="" disabled />
                   {subdivisionsArray.map(({ code, name }) => (
-                    <MenuItem key={code} value={code}>
+                    // <MenuItem key={code} value={code}>
+                    //   {name}
+                    // </MenuItem>
+                    <option key={code} value={code}>
                       {name}
-                    </MenuItem>
+                    </option>
                   ))}
                 </Select>
               </FormControl>
@@ -161,12 +170,18 @@ const AddressForm = ({ checkoutId, next }) => {
                 disabled={options.length === 0}
               >
                 <InputLabel>Opsionet e dërgesës</InputLabel>
-                <Select value={option} onChange={handleOptionChange}>
-                  {options.map((op) => (
-                    <MenuItem key={op.id} value={op.id}>
-                      {op.description} - {op.price.formatted_with_code}
-                    </MenuItem>
-                  ))}
+                <Select native value={option} onChange={handleOptionChange}>
+                  <option aria-label="None" value="" disabled />
+                  {options.map(
+                    ({ id, description, price: { formatted_with_code } }) => (
+                      // <MenuItem key={op.id} value={op.id}>
+                      //   {op.description} - {op.price.formatted_with_code}
+                      // </MenuItem>
+                      <option key={id} value={id}>
+                        {description} - ({formatted_with_code})
+                      </option>
+                    )
+                  )}
                 </Select>
               </FormControl>
             </Grid>
