@@ -9,11 +9,19 @@ const initialState = {
   checkout: {
     checkoutToken: {},
     shippingCountries: {},
-    shippingCountry: "",
     shippingSubdivisions: {},
-    shippingSubdivision: "",
     shippingOptions: [],
-    shippingOption: "",
+    formData: {
+      shippingCountry: "",
+      shippingSubdivision: "",
+      shippingOption: "",
+      firstname: "",
+      lastname: "",
+      address1: "",
+      email: "",
+      city: "",
+      zip: "",
+    },
   },
 };
 

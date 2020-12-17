@@ -1,4 +1,4 @@
-import * as C from "../../../constant";
+import * as C from "../../../../constant";
 
 const initialState = {};
 

@@ -52,6 +52,18 @@ export const setShippingOption = (shippingOption) => ({
   },
 });
 
+export const setFormData = (data) => ({
+  type: C.SET_CHECKOUT_FORM_DATA,
+  payload: {
+    data,
+  },
+});
+
+export const resetForm = () => ({
+  type: C.RESET_FORM,
+  payload: {},
+});
+
 // thunks
 
 export const generateCheckoutToken = () => {

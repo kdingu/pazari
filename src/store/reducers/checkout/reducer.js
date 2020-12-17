@@ -1,10 +1,11 @@
 import * as C from "../../constant";
 import shippingCountriesReducer from "./shippingCountries/reducer";
-import shippingCountryReducer from "./shippingCountry/reducer";
+import shippingCountryReducer from "./formData/shippingCountry/reducer";
 import shippingSubdivisionsReducer from "./shippingSubdivisions/reducer";
-import shippingSubdivisionReducer from "./shippingSubdivision/reducer";
+import shippingSubdivisionReducer from "./formData/shippingSubdivision/reducer";
 import shippingOptionsReducer from "./shippingOptions/reducer";
-import shippingOptionReducer from "./shippingOption/reducer";
+import shippingOptionReducer from "./formData/shippingOption/reducer";
+import formDataReducer from "./formData/data/reducer";
 
 const initialState = "";
 
@@ -26,10 +27,13 @@ export default (state = initialState, { type, payload }) => {
     case C.SET_SHIPPING_COUNTRY:
       return {
         ...state,
-        shippingCountry: shippingCountryReducer(state.shippingCountry, {
-          type,
-          payload: { shippingCountry: payload.shippingCountry },
-        }),
+        formData: {
+          ...state.formData,
+          shippingCountry: shippingCountryReducer(state.shippingCountry, {
+            type,
+            payload: { shippingCountry: payload.shippingCountry },
+          }),
+        },
       };
 
     case C.SET_SHIPPING_SUBDIVISIONS:
@@ -47,13 +51,16 @@ export default (state = initialState, { type, payload }) => {
     case C.SET_SHIPPING_SUBDIVISION:
       return {
         ...state,
-        shippingSubdivision: shippingSubdivisionReducer(
-          state.shippingSubdivision,
-          {
-            type,
-            payload,
-          }
-        ),
+        formData: {
+          ...state.formData,
+          shippingSubdivision: shippingSubdivisionReducer(
+            state.shippingSubdivision,
+            {
+              type,
+              payload,
+            }
+          ),
+        },
       };
 
     case C.SET_SHIPPING_OPTIONS:
@@ -68,10 +75,36 @@ export default (state = initialState, { type, payload }) => {
     case C.SET_SHIPPING_OPTION:
       return {
         ...state,
-        shippingOption: shippingOptionReducer(state.shippingOption, {
-          type,
-          payload,
-        }),
+        formData: {
+          ...state.formData,
+          shippingOption: shippingOptionReducer(state.shippingOption, {
+            type,
+            payload,
+          }),
+        },
+      };
+
+    case C.SET_CHECKOUT_FORM_DATA:
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          ...formDataReducer(state.formData, { type, payload }),
+        },
+      };
+
+    case C.RESET_FORM:
+      return {
+        ...state,
+        shippingCountries: {},
+        shippingSubdivisions: {},
+        shippingOptions: [],
+        formData: {
+          ...state.formData,
+          shippingCountry: "",
+          shippingSubdivision: "",
+          shippingOption: "",
+        },
       };
 
     default:

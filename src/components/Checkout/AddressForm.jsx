@@ -14,15 +14,24 @@ import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { checkoutActions } from "../../store/actions";
 
-const AddressForm = ({ checkoutId }) => {
+const AddressForm = ({ checkoutId, next }) => {
   const methods = useForm();
+
+  const firstname = useSelector((state) => state.checkout.formData.firstname);
+  const lastname = useSelector((state) => state.checkout.formData.lastname);
+  const address1 = useSelector((state) => state.checkout.formData.address1);
+  const email = useSelector((state) => state.checkout.formData.email);
+  const city = useSelector((state) => state.checkout.formData.city);
+  const zip = useSelector((state) => state.checkout.formData.zip);
 
   const countries = useSelector((state) => state.checkout.shippingCountries);
   const countriesArray = Object.entries(countries).map(([code, name]) => ({
     code,
     name,
   }));
-  const country = useSelector((state) => state.checkout.shippingCountry);
+  const country = useSelector(
+    (state) => state.checkout.formData.shippingCountry
+  );
 
   const subdivisions = useSelector(
     (state) => state.checkout.shippingSubdivisions
@@ -31,11 +40,11 @@ const AddressForm = ({ checkoutId }) => {
     subdivisions
   ).map(([code, name]) => ({ code, name }));
   const subdivision = useSelector(
-    (state) => state.checkout.shippingSubdivision
+    (state) => state.checkout.formData.shippingSubdivision
   );
 
   const options = useSelector((state) => state.checkout.shippingOptions);
-  const option = useSelector((state) => state.checkout.shippingOption);
+  const option = useSelector((state) => state.checkout.formData.shippingOption);
 
   const dispatch = useDispatch();
 
@@ -72,17 +81,47 @@ const AddressForm = ({ checkoutId }) => {
     dispatch(checkoutActions.setShippingOption(e.target.value));
   };
 
+  const onSubmit = (data) => {
+    dispatch(checkoutActions.setFormData(data));
+    next();
+  };
+
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <FormInput label="Emri" name="firstname" required />
-            <FormInput label="Mbiemri" name="lastname" required />
-            <FormInput label="Adresa" name="address1" required />
-            <FormInput label="Email" name="email" required />
-            <FormInput label="Qyteti" name="city" required />
-            <FormInput label="ZIP" name="zip" required />
+            <FormInput
+              label="Emri"
+              name="firstname"
+              required
+              defaultValue={firstname}
+            />
+            <FormInput
+              label="Mbiemri"
+              name="lastname"
+              required
+              defaultValue={lastname}
+            />
+            <FormInput
+              label="Adresa"
+              name="address1"
+              required
+              defaultValue={address1}
+            />
+            <FormInput
+              label="Email"
+              name="email"
+              required
+              defaultValue={email}
+            />
+            <FormInput
+              label="Qyteti"
+              name="city"
+              required
+              defaultValue={city}
+            />
+            <FormInput label="ZIP" name="zip" required defaultValue={zip} />
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth required color="secondary">
                 <InputLabel>Shteti i dërgesës</InputLabel>
@@ -130,6 +169,17 @@ const AddressForm = ({ checkoutId }) => {
                   ))}
                 </Select>
               </FormControl>
+            </Grid>
+
+            <Grid align="right" item xs={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disableElevation
+              >
+                Vazhdo
+              </Button>
             </Grid>
           </Grid>
         </form>
