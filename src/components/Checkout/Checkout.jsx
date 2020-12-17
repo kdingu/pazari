@@ -9,6 +9,7 @@ import {
   Button,
   Grid,
   IconButton,
+  Tooltip,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -41,10 +42,7 @@ const Checkout = () => {
     };
 
     return () => {
-      // reset select values and activeStep if checkout is unmounted
       resetForm();
-      // dispatch(checkoutActions.setShippingCountry(""));
-      // dispatch(checkoutActions.setShippingSubdivision(""));
     };
   }, []);
 
@@ -69,14 +67,16 @@ const Checkout = () => {
       <main className={classes.layout}>
         <Grid container>
           <Grid item align="right" xs={12}>
-            <IconButton
-              component={Link}
-              to="/cart"
-              color="primary"
-              aria-label="anulo"
-            >
-              <Close />
-            </IconButton>
+            <Tooltip title="Kthehu tek shporta" arrow placement="left">
+              <IconButton
+                component={Link}
+                to="/cart"
+                color="primary"
+                aria-label="anulo"
+              >
+                <Close />
+              </IconButton>
+            </Tooltip>
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
