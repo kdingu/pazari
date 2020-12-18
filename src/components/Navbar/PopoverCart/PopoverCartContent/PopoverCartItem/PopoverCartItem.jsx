@@ -20,6 +20,7 @@ const PopoverCartItem = ({ item, removeProductFromCart }) => {
               ? item.media.source
               : noImageUrl
           }
+          style={{ border: "2px solid rgba(0,0,0,0.2)" }}
         />
       </Item>
       <Row wrap grow gap={0.5} minWidth={0}>

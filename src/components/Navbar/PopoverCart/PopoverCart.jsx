@@ -53,7 +53,7 @@ const PopoverCart = ({ badge }) => {
 };
 
 const mapStateToProps = (state) => ({
-  badge: state.cart.total_unique_items,
+  badge: state.cart.total_items,
 });
 
 export default connect(mapStateToProps)(PopoverCart);

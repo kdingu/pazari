@@ -51,7 +51,7 @@ const AddressForm = ({ checkoutId, next }) => {
         checkoutActions.getShippingSubdivisions(checkoutId, country)
       ).then((res) => {
         const firstSubdivision = Object.keys(res)[0];
-        if (firstSubdivision)
+        if (!subdivision && firstSubdivision)
           dispatch(checkoutActions.setShippingSubdivision(firstSubdivision));
       });
   }, [country]);

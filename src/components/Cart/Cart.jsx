@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "./CartItem/CartItem";
 import useStyles from "./styles";
 import { Container, Typography, Button, Grid, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/actions";
 import { Link } from "react-router-dom";
+import { DeleteForever } from "@material-ui/icons";
 
 const Cart = () => {
+  const [disabled, setDisabled] = useState(false);
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const handleUpdateProductQty = (productId, quantity) => {
-    dispatch(cartActions.updateProductQtyAsync(productId, quantity));
-  };
-  const handleRemoveProductFromCart = (productId) => {
-    dispatch(cartActions.removeProductFromCartAsync(productId));
-  };
   const handleEmptyCart = () => {
-    dispatch(cartActions.emptyCartAsync());
+    setDisabled(true);
+    dispatch(cartActions.emptyCartAsync()).then(() => setDisabled(false));
   };
 
   const classes = useStyles();
@@ -37,11 +35,7 @@ const Cart = () => {
       <Grid container spacing={2}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={6} md={3} key={item.id}>
-            <CartItem
-              item={item}
-              updateProductQty={handleUpdateProductQty}
-              removeProductFromCart={handleRemoveProductFromCart}
-            />
+            <CartItem item={item} />
           </Grid>
         ))}
       </Grid>
@@ -53,12 +47,13 @@ const Cart = () => {
           <Button
             className={classes.emptyButton}
             type="button"
-            variant="contained"
+            startIcon={<DeleteForever />}
             disableElevation
-            color="secondary"
+            color="primary"
+            disabled={disabled}
             onClick={handleEmptyCart}
           >
-            Boshatise Shportën
+            {disabled ? "Prisni..." : "Boshatise Shportën"}
           </Button>
           <Button
             component={Link}
@@ -67,7 +62,7 @@ const Cart = () => {
             type="button"
             variant="contained"
             disableElevation
-            color="primary"
+            color="secondary"
           >
             Bli
           </Button>

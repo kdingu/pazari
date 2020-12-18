@@ -6,7 +6,11 @@ export default makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   layout: {
-    marginTop: "5%",
+    marginTop: "9%",
+    // position: "absolute",
+    // top: "50%",
+    // left: "50%",
+    // transform: "translate(-50%,-50%)",
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
@@ -22,7 +26,7 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
     [theme.breakpoints.down("xs")]: {
       width: "100%",
-      marginTop: 60,
+      // marginTop: 60,
     },
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       // marginTop: theme.spacing(6),

@@ -8,11 +8,16 @@ import {
   Button,
 } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../../store/actions";
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product }) => {
+  const [disabled, setDisabled] = useState(false);
+  const dispatch = useDispatch();
+
   const classes = useStyles();
   return (
     <div>
@@ -47,9 +52,15 @@ const Product = ({ product, addToCart }) => {
             color="primary"
             aria-label="upload picture"
             component="span"
-            onClick={() => addToCart(product.id)}
+            disabled={disabled}
+            onClick={() => {
+              setDisabled(true);
+              dispatch(cartActions.addProductToCartAsync(product.id)).then(() =>
+                setDisabled(false)
+              );
+            }}
           >
-            Shto në kartë
+            {disabled ? "Prisni..." : "Shto në shportë"}
           </Button>
         </CardActions>
       </Card>

@@ -5,7 +5,13 @@ import rootReducer from "./reducers";
 const initialState = {
   products: { data: [], meta: {} },
   categories: [],
-  cart: { line_items: [] },
+  cart: {
+    line_items: [],
+    id: "",
+    total_items: 1,
+    total_unique_items: 1,
+    subtotal: {},
+  },
   checkout: {
     checkoutToken: {},
     shippingCountries: {},

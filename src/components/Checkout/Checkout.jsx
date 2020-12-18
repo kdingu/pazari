@@ -30,12 +30,17 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState(2);
   const [loadingCheckout, setLoadingCheckout] = useState(false);
 
-  useEffect(() => {
-    setActiveStep(0);
+  const generateTokenAndGetCountries = () => {
     setLoadingCheckout(true);
     dispatch(checkoutActions.generateCheckoutToken()) // create checkoutToken
       .then(() => dispatch(checkoutActions.getShippingCountries())) // load available shipping countries for that token
       .then(() => setLoadingCheckout(false));
+  };
+
+  useEffect(() => {
+    setActiveStep(0);
+
+    generateTokenAndGetCountries();
 
     const resetForm = () => {
       dispatch(checkoutActions.resetForm());
@@ -49,12 +54,13 @@ const Checkout = () => {
   const Confirmation = () => <div>Confirm</div>;
 
   const next = () => setActiveStep((step) => step + 1);
+  const back = () => setActiveStep((step) => step - 1);
 
   const Form = () =>
     activeStep === 0 ? (
       <AddressForm checkoutId={checkoutToken.id} next={next} />
     ) : (
-      <PaymentForm />
+      <PaymentForm back={back} />
     );
 
   return (
