@@ -23,9 +23,7 @@ const CartItem = ({ item }) => {
 
   const updateProductQty = (id, quantity) => {
     setDisabled(true);
-    dispatch(cartActions.updateProductQtyAsync(id, quantity)).then(() => {
-      // setDisabled(false)
-    });
+    dispatch(cartActions.updateProductQtyAsync(id, quantity));
   };
 
   const removeProductFromCart = (id) => {
