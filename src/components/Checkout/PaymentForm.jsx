@@ -56,12 +56,13 @@ const PaymentForm = ({ back }) => {
   };
 
   const onCaptureCheckout = async (id, data) => {
+    console.log("captureCheckout: ", id, data);
     // call commerce.checkout.capture
-    const order = await commerce.checkout.capture(id, data);
+    // const order = await commerce.checkout.capture(id, data);
     //// set order state with response data
-    dispatch(orderActions.setOrder(order));
+    // dispatch(orderActions.setOrder(order));
     //// refresh cart
-    refreshCart();
+    // refreshCart();
     ////// update cart state with response data
     //// navigate to successfull order page
     ////// store order in session storage
