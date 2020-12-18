@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import PopoverCart from "./PopoverCart/PopoverCart";
 import logo from "../../assests/pazari-logo.png";
@@ -15,7 +15,7 @@ const Navbar = () => {
       <AppBar className={classes.appBar} color="inherit">
         <Toolbar className={classes.constrictWidth}>
           <Typography
-            component={Link}
+            component={NavLink}
             to="/"
             variant="h6"
             className={classes.title}
@@ -26,7 +26,7 @@ const Navbar = () => {
           </Typography>
           <div className={classes.grow}></div>
           <Button
-            component={Link}
+            component={NavLink}
             to="/products"
             aria-label="Shiko shportën"
             color="inherit"
