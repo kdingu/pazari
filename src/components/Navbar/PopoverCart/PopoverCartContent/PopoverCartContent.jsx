@@ -4,15 +4,15 @@ import { Column, Row, Item } from "@mui-treasury/components/flex";
 import { removeProductFromCartAsync } from "../../../../store/actions/cart/actions";
 import PopoverCartItem from "./PopoverCartItem/PopoverCartItem";
 import useStyles from "./style";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Typography, Button, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const PopoverCartContent = ({
-  cart,
   handleRemoveProductFromCart,
   closePopoverCart,
 }) => {
+  const cart = useSelector((state) => state.cart);
   const classes = useStyles();
   return (
     <Column p={0} gap={0} className={classes.card}>
@@ -41,12 +41,9 @@ const PopoverCartContent = ({
       {cart.line_items.length > 0 ? (
         <>
           {cart.line_items.map((item, index) => (
-            <Row key={index} className={classes.item}>
+            <Row key={item.id} className={classes.item}>
               <Item grow={1}>
-                <PopoverCartItem
-                  item={item}
-                  removeProductFromCart={handleRemoveProductFromCart}
-                />
+                <PopoverCartItem item={item} />
                 {index === cart.line_items.length - 1 ? null : (
                   <Divider variant="middle" className={classes.divider} />
                 )}
@@ -88,14 +85,4 @@ const PopoverCartContent = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleRemoveProductFromCart: (productId) => {
-    dispatch(removeProductFromCartAsync(productId));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PopoverCartContent);
+export default PopoverCartContent;

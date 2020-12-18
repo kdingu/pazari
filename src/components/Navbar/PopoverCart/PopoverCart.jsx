@@ -1,11 +1,13 @@
 import { Badge, Popover, IconButton } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import PopoverCartContent from "./PopoverCartContent/PopoverCartContent";
 
-const PopoverCart = ({ badge }) => {
+const PopoverCart = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const badge = useSelector((state) => state.cart.total_items);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -52,8 +54,4 @@ const PopoverCart = ({ badge }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  badge: state.cart.total_items,
-});
-
-export default connect(mapStateToProps)(PopoverCart);
+export default PopoverCart;
