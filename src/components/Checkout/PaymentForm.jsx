@@ -20,7 +20,7 @@ const PaymentForm = ({ back }) => {
       style={{ border: "1px solid rgba(0,0,0,0.2)", padding: "0" }}
     >
       {checkoutToken.live.line_items.map((product, index) => (
-        <>
+        <div key={product.id}>
           <ListItem style={{ padding: "0 3%" }}>
             <ListItemText
               primary={product.name}
@@ -33,7 +33,7 @@ const PaymentForm = ({ back }) => {
           {index !== checkoutToken.live.line_items.length - 1 && (
             <Divider light />
           )}
-        </>
+        </div>
       ))}
       <Divider />
       <ListItem style={{ padding: "0 3%", margin: "2.5% 0" }}>
