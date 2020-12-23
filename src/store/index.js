@@ -18,17 +18,25 @@ const initialState = {
     shippingSubdivisions: {},
     shippingOptions: [],
     formData: {
+      // shipping only
       shippingCountry: "",
       shippingSubdivision: "",
       shippingOption: "",
+      // personal
       firstname: "",
       lastname: "",
       address1: "",
       email: "",
       city: "",
       zip: "",
+      // card
+      cardNumber: "",
+      expMonth: "",
+      expYear: "",
+      cvc: "",
     },
   },
+  order: "",
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

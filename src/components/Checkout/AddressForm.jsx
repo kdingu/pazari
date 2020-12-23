@@ -46,22 +46,26 @@ const AddressForm = ({ checkoutId, next }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (country)
+    if (country) {
       dispatch(
         checkoutActions.getShippingSubdivisions(checkoutId, country)
       ).then((res) => {
         const firstSubdivision = Object.keys(res)[0];
-        if (!subdivision && firstSubdivision)
+        if (firstSubdivision) {
           dispatch(checkoutActions.setShippingSubdivision(firstSubdivision));
+        } else {
+          dispatch(checkoutActions.setShippingSubdivision(""));
+        }
       });
+    }
   }, [country]);
 
   useEffect(() => {
-    if (subdivision)
+    if (country)
       dispatch(
         checkoutActions.getShippingOptions(checkoutId, country, subdivision)
       ).then((op) => {
-        const opId = op[0].id || false;
+        const opId = op[0]?.id || false;
         if (opId) dispatch(checkoutActions.setShippingOption(opId));
       });
   }, [subdivision]);
@@ -125,9 +129,6 @@ const AddressForm = ({ checkoutId, next }) => {
                 <Select native value={country} onChange={handleCountryChange}>
                   <option aria-label="None" value="" disabled />
                   {countriesArray.map(({ code, name }) => (
-                    // <MenuItem key={code} value={code}>
-                    //   {name}
-                    // </MenuItem>
                     <option key={code} value={code}>
                       {name}
                     </option>
@@ -151,9 +152,6 @@ const AddressForm = ({ checkoutId, next }) => {
                 >
                   <option aria-label="None" value="" disabled />
                   {subdivisionsArray.map(({ code, name }) => (
-                    // <MenuItem key={code} value={code}>
-                    //   {name}
-                    // </MenuItem>
                     <option key={code} value={code}>
                       {name}
                     </option>
@@ -174,9 +172,6 @@ const AddressForm = ({ checkoutId, next }) => {
                   <option aria-label="None" value="" disabled />
                   {options.map(
                     ({ id, description, price: { formatted_with_code } }) => (
-                      // <MenuItem key={op.id} value={op.id}>
-                      //   {op.description} - {op.price.formatted_with_code}
-                      // </MenuItem>
                       <option key={id} value={id}>
                         {description} - ({formatted_with_code})
                       </option>

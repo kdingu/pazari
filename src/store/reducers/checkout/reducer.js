@@ -93,6 +93,18 @@ export default (state = initialState, { type, payload }) => {
         },
       };
 
+    case C.SET_CARD_DETAILS:
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          cardNumber: payload.data.cardnumber,
+          expMonth: payload.data.expMonth,
+          expYear: payload.data.expYear,
+          cvc: payload.data.cvc,
+        },
+      };
+
     case C.RESET_FORM:
       return {
         ...state,

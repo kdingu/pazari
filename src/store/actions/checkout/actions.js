@@ -59,6 +59,13 @@ export const setFormData = (data) => ({
   },
 });
 
+export const setCardDetails = (data) => ({
+  type: C.SET_CARD_DETAILS,
+  payload: {
+    data,
+  },
+});
+
 export const resetForm = () => ({
   type: C.RESET_FORM,
   payload: {},
@@ -122,6 +129,7 @@ export const getShippingOptions = (
         country: countryCode,
         region: subdivision,
       });
+      console.log(options);
       dispatch(setShippingOptions(options));
       return options;
     } catch (error) {

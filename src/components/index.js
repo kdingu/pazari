@@ -3,3 +3,4 @@ export { default as Navbar } from "./Navbar/Navbar";
 export { default as Cart } from "./Cart/Cart";
 export { default as Home } from "./Home/Home";
 export { default as Checkout } from "./Checkout/Checkout";
+export { default as OrderSuccess } from "./OrderSuccess/OrderSuccess";
