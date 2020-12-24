@@ -16,6 +16,7 @@ import {
 import store from "./store";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./lib/MuiTheme/theme";
+import { categoryActions } from "./store/actions";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const App = () => {
       console.log("App.js - redux didUpdate")
     );
 
+    dispatch(categoryActions.fetchCategories());
     dispatch(fetchProductsAsync());
     dispatch(fetchCartAsync());
 
@@ -42,10 +44,10 @@ const App = () => {
         <Navbar />
 
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Home />
-          </Route>
-          <Route exact path="/products">
+          </Route> */}
+          <Route exact path="/">
             <Products />
           </Route>
           <Route exact path="/cart">

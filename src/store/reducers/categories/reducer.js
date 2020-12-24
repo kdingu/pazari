@@ -5,7 +5,7 @@ const initialState = ["cat1", "cat2"];
 // eslint-disable-next-line
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case C.GET_CATEGORIES:
+    case C.SET_CATEGORIES:
       return [...payload.categories];
 
     default:

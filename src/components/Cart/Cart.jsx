@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem/CartItem";
+import { Hero } from "../";
 import useStyles from "./styles";
 import { Container, Typography, Button, Grid, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,10 +22,21 @@ const Cart = () => {
   const classes = useStyles();
 
   const EmptyCart = () => (
-    <Typography variant="subtitle1">
-      Nuk keni asnje produkt ne karten tuaj.{" "}
+    <Typography
+      variant="h5"
+      component="p"
+      align="center"
+      style={{
+        minHeight: "200px",
+        display: "flex",
+        flexFlow: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <span>Nuk keni asnjë produkt në shportën tuaj.</span>
       {
-        <Link to="/products" className={classes.link}>
+        <Link to="/" className={classes.link}>
           Shikoni produktet dhe zgjidhni çfarë ju pëlqen!
         </Link>
       }
@@ -72,13 +84,14 @@ const Cart = () => {
   );
 
   return (
-    <Container className={classes.main}>
+    <>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h4" gutterBottom>
-        Shporta
-      </Typography>
-      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
-    </Container>
+      <Hero title="Shporta" />
+      <Container className={classes.main}>
+        <div className={classes.toolbar} />
+        {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+      </Container>
+    </>
   );
 };
 

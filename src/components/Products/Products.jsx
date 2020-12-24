@@ -4,6 +4,9 @@ import { productActions } from "../../store/actions";
 import { Container, Grid, CircularProgress, Button } from "@material-ui/core";
 import { AddCircleOutline } from "@material-ui/icons";
 import Product from "./Product/Product";
+import Hero from "../Hero/Hero";
+import Toolbar from "../Toolbar/Toolbar";
+
 import useStyles from "./styles";
 
 const Products = () => {
@@ -54,10 +57,21 @@ const Products = () => {
   );
 
   return (
-    <Container className={classes.main}>
+    <>
       <div className={classes.toolbar} />
-      <ProductsGrid />
-    </Container>
+      <Hero
+        withSearch
+        noShadow
+        imageUrl={
+          "https://images.unsplash.com/photo-1552083974-186346191183?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=40"
+        }
+      />
+      <Toolbar />
+      {/* <Categories /> */}
+      <Container className={classes.main}>
+        <ProductsGrid />
+      </Container>
+    </>
   );
 };
 

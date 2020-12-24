@@ -25,7 +25,7 @@ const Navbar = () => {
             Pazari
           </Typography>
           <div className={classes.grow}></div>
-          <Button
+          {/* <Button
             component={NavLink}
             to="/products"
             aria-label="Shiko shportën"
@@ -34,7 +34,7 @@ const Navbar = () => {
             <Typography className={classes.button} color="inherit">
               Shiko Markatën
             </Typography>
-          </Button>
+          </Button> */}
           <div className={classes.button}>
             <PopoverCart />
           </div>

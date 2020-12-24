@@ -28,10 +28,40 @@ export const appendProducts = ({ data, meta }) => {
 
 export const fetchProductsAsync = () => {
   return async (dispatch) => {
-    const { data, meta } = await commerce.products.list({
-      limit: 3,
-    });
+    const { data, meta } = await commerce.products.list();
     dispatch(setProducts({ data, meta }));
+  };
+};
+
+export const search = (searchString) => {
+  const query = searchString !== "" ? { query: searchString } : null;
+  return async (dispatch) => {
+    try {
+      const { data, meta } = await commerce.products.list(query);
+      if (data) {
+        dispatch(setProducts({ data, meta }));
+      } else {
+        throw "Asnjë rezultat.";
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+};
+
+export const searchByCategoryId = (id) => {
+  const query = id !== "" ? { category_id: id } : null;
+  return async (dispatch) => {
+    try {
+      const { data, meta } = await commerce.products.list(query);
+      if (data) {
+        dispatch(setProducts({ data, meta }));
+      } else {
+        throw "Asnjë rezultat.";
+      }
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -40,7 +70,6 @@ export const appendProductsAsync = (page) => {
     try {
       const { data, meta } = await commerce.products.list({
         page,
-        limit: 3,
       });
       const newData = [
         ...cloneDeep(getState().products.data),
