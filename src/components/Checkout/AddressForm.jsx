@@ -42,11 +42,15 @@ const AddressForm = ({ checkoutId, next }) => {
 
   const options = useSelector((state) => state.checkout.shippingOptions);
   const option = useSelector((state) => state.checkout.formData.shippingOption);
-
+  let prevCountry;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (country) {
+    prevCountry = country;
+  }, []);
+
+  useEffect(() => {
+    if (country != prevCountry) {
       dispatch(
         checkoutActions.getShippingSubdivisions(checkoutId, country)
       ).then((res) => {
