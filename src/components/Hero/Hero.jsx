@@ -41,7 +41,7 @@ const Hero = ({
             style={{ fontWeight: "bold", color: "#fff" }}
             variant="h3"
             component="h1"
-            align={!withSearch ? "center" : ""}
+            align={!withSearch ? "center" : "left"}
           >
             {title}
           </Typography>
