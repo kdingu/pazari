@@ -8,8 +8,8 @@ const initialState = {
   cart: {
     line_items: [],
     id: "",
-    total_items: 1,
-    total_unique_items: 1,
+    total_items: 0,
+    total_unique_items: 0,
     subtotal: {},
   },
   checkout: {

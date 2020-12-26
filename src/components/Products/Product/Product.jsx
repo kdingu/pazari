@@ -12,7 +12,8 @@ import React, { useState } from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../../store/actions";
+import { cartActions, generalActions } from "../../../store/actions";
+import { changeErrorsCount } from "../../../store/actions/general/actions";
 
 const Product = ({ product }) => {
   const [disabled, setDisabled] = useState(false);
@@ -55,9 +56,13 @@ const Product = ({ product }) => {
             disabled={disabled}
             onClick={() => {
               setDisabled(true);
-              dispatch(cartActions.addProductToCartAsync(product.id)).then(() =>
-                setDisabled(false)
-              );
+              dispatch(cartActions.addProductToCartAsync(product.id))
+                .then(() => setDisabled(false))
+                .catch((error) => {
+                  console.log(error);
+                  setDisabled(false);
+                  dispatch(generalActions.changeErrorsCount());
+                });
             }}
           >
             {disabled ? "Prisni..." : "Shto në shportë"}

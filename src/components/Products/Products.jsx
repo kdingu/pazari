@@ -11,6 +11,7 @@ import useStyles from "./styles";
 
 const Products = () => {
   const [loadingMore, setLoadingMore] = useState(false);
+
   const { data, meta } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 

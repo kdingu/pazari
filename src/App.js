@@ -17,6 +17,7 @@ import store from "./store";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./lib/MuiTheme/theme";
 import { categoryActions } from "./store/actions";
+import Snackbar from "./components/Snackbar";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const App = () => {
       <Router>
         <CssBaseline />
         <Navbar />
+        <Snackbar />
 
         <Switch>
           {/* <Route exact path="/">

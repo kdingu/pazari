@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     overflowX: "hidden",
     overflowY: "scroll",
     width: "100%",
-    minWidth: "300px",
+    minWidth: "350px",
     maxWidth: "500px",
     maxHeight: "400px",
     borderRadius: "3px",

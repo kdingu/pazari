@@ -7,6 +7,7 @@ import categoriesReducer from "./categories/reducer";
 import cartReducer from "./cart/reducer";
 import checkoutReducer from "./checkout/reducer";
 import orderReducer from "./order/reducer";
+import errorsCounterReducer from "./errorsCounter/reducer";
 
 export default combineReducers({
   products: productsReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   cart: cartReducer,
   checkout: checkoutReducer,
   order: orderReducer,
+  errorsCount: errorsCounterReducer,
 });
