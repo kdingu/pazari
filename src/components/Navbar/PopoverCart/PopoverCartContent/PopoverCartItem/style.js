@@ -17,10 +17,10 @@ export default makeStyles(() => ({
     color: "#758392",
     marginTop: -4,
   },
-  btn: {
-    // borderRadius: 20,
-    // padding: "0.125rem 0.75rem",
-    // borderColor: "#becddc",
-    // fontSize: "0.75rem",
+  name: {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    maxWidth: "300px",
   },
 }));

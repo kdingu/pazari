@@ -6,7 +6,9 @@ export default makeStyles((theme) => ({
   card: {
     overflowX: "hidden",
     overflowY: "scroll",
-    minWidth: "400px",
+    width: "100%",
+    minWidth: "300px",
+    maxWidth: "500px",
     maxHeight: "400px",
     borderRadius: "3px",
     paddingBottom: generalMargin,
