@@ -129,7 +129,6 @@ export const getShippingOptions = (
         country: countryCode,
         region: subdivision,
       });
-      console.log(options);
       dispatch(setShippingOptions(options));
       return options;
     } catch (error) {

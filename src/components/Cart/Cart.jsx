@@ -60,6 +60,7 @@ const Cart = () => {
             className={classes.emptyButton}
             type="button"
             startIcon={<DeleteForever />}
+            variant="outlined"
             disableElevation
             color="primary"
             disabled={disabled}

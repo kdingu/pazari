@@ -63,6 +63,7 @@ const Products = () => {
       <Hero
         withSearch
         noShadow
+        chosenHeight={550}
         imageUrl={
           "https://images.unsplash.com/photo-1552083974-186346191183?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=40"
         }

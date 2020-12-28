@@ -270,14 +270,17 @@ const PaymentForm = ({ back }) => {
             </Grid>
           </Grid>
           {/* <CardDetails /> */}
-          <Grid container item xs={12}>
+          <Grid container item xs={12} style={{ marginTop: 26 }}>
             <Grid item xs={6}>
-              <Button color="primary" onClick={back}>
-                Kthehu
-              </Button>
+              <Button onClick={back}>Kthehu</Button>
             </Grid>
             <Grid align="right" item xs={6}>
-              <Button color="primary" type="submit">
+              <Button
+                color="primary"
+                disableElevation
+                variant="contained"
+                type="submit"
+              >
                 Paguaj
               </Button>
             </Grid>

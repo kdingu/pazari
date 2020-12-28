@@ -15,6 +15,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexFlow: "column",
     alignItems: "center",
+    border: "1px solid #333",
   },
   orderRef: {
     backgroundColor: theme.palette.secondary.dark,

@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import { useSelector } from "react-redux";
 import { Alert } from "@material-ui/lab";
+import { Slide } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   close: {
@@ -12,6 +13,8 @@ const useStyles = makeStyles((theme) => ({
 
 var prevItems = 0;
 var prevErrors;
+
+const slide = (props) => <Slide {...props} direction="up" />;
 
 const MySnackbar = () => {
   const [snackPack, setSnackPack] = React.useState([]);
@@ -84,6 +87,7 @@ const MySnackbar = () => {
         vertical: "bottom",
         horizontal: "center",
       }}
+      TransitionComponent={slide}
       open={open}
       autoHideDuration={4000}
       onClose={handleClose}

@@ -12,12 +12,21 @@ const OrderSuccess = () => {
   return (
     <div className={classes.main}>
       <img src={imageUrl} width={225} className={classes.img} />
-      <Paper className={classes.paper} elevation={3}>
+      <Typography
+        variant="h5"
+        align="center"
+        gutterBottom
+        component="h1"
+        className={classes.title}
+      >
+        POROSIA U PRANUA
+      </Typography>
+      <Paper className={classes.paper} elevation={0}>
         <Typography variant="h4" align="center">
           <span className={classes.orderRef}>{orderRef}</span>
         </Typography>
         <div className={classes.body}>
-          <Typography variant="p" component="p" className={classes.text}>
+          <Typography component="p" align="center" className={classes.text}>
             Ky është kodi i porosisë tuaj, ruajeni. Me këtë kod mund të
             kontaktoni me suportin për çdo kërkesë.
           </Typography>

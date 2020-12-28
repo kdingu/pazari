@@ -9,7 +9,7 @@ const bg =
 
 const Hero = ({
   title = "Pazari",
-  chosenHeight = "550px",
+  chosenHeight = "250px",
   imageUrl = bg,
   withSearch = false,
   noShadow = false,
@@ -30,6 +30,7 @@ const Hero = ({
       style={noShadow ? stylesWithoutShadow : stylesWithShadow}
     >
       <img className={classes.mainBackgroundImage} src={imageUrl} />
+      <div className={classes.overlay} />
       <Grid
         className={classes.grid}
         container

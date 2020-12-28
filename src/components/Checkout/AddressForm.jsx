@@ -43,14 +43,16 @@ const AddressForm = ({ checkoutId, next }) => {
   const options = useSelector((state) => state.checkout.shippingOptions);
   const option = useSelector((state) => state.checkout.formData.shippingOption);
   let prevCountry;
+  let prevSubdivision;
   const dispatch = useDispatch();
 
   useEffect(() => {
     prevCountry = country;
+    prevSubdivision = subdivision;
   }, []);
 
   useEffect(() => {
-    if (country != prevCountry) {
+    if (country && country !== prevCountry) {
       dispatch(
         checkoutActions.getShippingSubdivisions(checkoutId, country)
       ).then((res) => {
@@ -65,7 +67,7 @@ const AddressForm = ({ checkoutId, next }) => {
   }, [country]);
 
   useEffect(() => {
-    if (country)
+    if (country && subdivision !== prevSubdivision)
       dispatch(
         checkoutActions.getShippingOptions(checkoutId, country, subdivision)
       ).then((op) => {
@@ -185,13 +187,8 @@ const AddressForm = ({ checkoutId, next }) => {
               </FormControl>
             </Grid>
 
-            <Grid align="right" item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                disableElevation
-              >
+            <Grid align="right" item xs={12} style={{ marginTop: 26 }}>
+              <Button type="submit" disableElevation>
                 Vazhdo
               </Button>
             </Grid>
