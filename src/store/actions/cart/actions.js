@@ -61,10 +61,10 @@ export const refreshCartAsync = () => {
   };
 };
 
-export const addProductToCartAsync = (productId) => {
+export const addProductToCartAsync = (productId, quantity = 1, variant) => {
   return async (dispatch) => {
     try {
-      const { cart } = await commerce.cart.add(productId);
+      const { cart } = await commerce.cart.add(productId, quantity, variant);
       const ourCart = {
         id: cart.id,
         line_items: [...cart.line_items],

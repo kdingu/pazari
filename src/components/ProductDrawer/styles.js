@@ -2,14 +2,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   main: {
-    maxWidth: "50vw",
+    maxWidth: "90vw",
     minWidth: "40vw",
     [theme.breakpoints.down("md")]: {
-      maxWidth: "70vw",
+      // maxWidth: "70vw",
       minWidth: "60vw",
     },
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "80vw",
+      // maxWidth: "80vw",
       minWidth: "70vw",
     },
     backgroundColor: theme.palette.background.default,
@@ -20,11 +20,19 @@ export default makeStyles((theme) => ({
       justifyContent: "center",
     },
     "& .image-gallery-content .image-gallery-slide .image-gallery-image": {
-      width: "100%",
+      height: "550px",
     },
   },
   wrapper: {
     minHeight: "100vh",
+  },
+  imageContainer: {
+    paddingLeft: "100px",
+    paddingRight: "100px",
+    [theme.breakpoints.down("md")]: {
+      paddingLeft: "0",
+      paddingRight: "0",
+    },
   },
   details: {
     marginTop: "1%",
@@ -32,6 +40,11 @@ export default makeStyles((theme) => ({
     paddingBottom: "20px",
     paddingLeft: "100px",
     paddingRight: "100px",
+    [theme.breakpoints.down("md")]: {
+      paddingLeft: "10px",
+      paddingRight: "10px",
+      textAlign: "center",
+    },
   },
   actions: {
     textAlign: "right",
