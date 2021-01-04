@@ -1,4 +1,8 @@
 export const SET_PRODUCTS = "SET_PRODUCTS";
+export const SET_PRODUCT_IN_DRAWER = "SET_PRODUCT_IN_DRAWER";
+export const OPEN_DRAWER = "OPEN_DRAWER";
+export const CLOSE_DRAWER = "CLOSE_DRAWER";
+export const SET_SEARCH_STRING = "SET_SEARCH_STRING";
 export const SET_CART = "SET_CART";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const APPEND_PRODUCTS = "APPEND_PRODUCTS";

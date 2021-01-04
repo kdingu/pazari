@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../../../store/actions";
 import useStyles from "./styles";
 
@@ -92,6 +92,7 @@ const Search = () => {
   const [searchString, setSearchString] = useState("");
   const [noSearchResults, setNoSearchResults] = useState(false);
   const [searching, setSearching] = useState(false);
+  const filter = useSelector((state) => state.products.searchString);
 
   const handleSearch = () => {
     setSearching(true);
@@ -103,6 +104,18 @@ const Search = () => {
         console.log(error);
         setSearching(false);
         setNoSearchResults(true);
+      });
+  };
+
+  const cleanSearch = () => {
+    setSearching(true);
+    dispatch(productActions.search(""))
+      .then(() => {
+        setSearching(false);
+        setSearchString("");
+      })
+      .catch(() => {
+        setSearching(false);
       });
   };
 
@@ -145,11 +158,26 @@ const Search = () => {
         </form>
       </Grid>
       <Grid item xs={12}>
-        {noSearchResults ? (
-          <Typography variant="subtitle1" className={classes.noSearchResult}>
+        {noSearchResults && (
+          <Typography variant="subtitle1" className={classes.infoText}>
             Asnjë rezultat. Kërko diçka tjetër.
           </Typography>
-        ) : null}
+        )}
+        {filter && (
+          <Typography variant="subtitle1" className={classes.infoText}>
+            Rezultati për: "{filter}" &nbsp;&nbsp;&nbsp;
+            <Button
+              color="secondary"
+              variant="outlined"
+              size="small"
+              onClick={cleanSearch}
+              disabled={searching}
+              // style={{ marginLeft: 16 }}
+            >
+              Fshi filtrin
+            </Button>
+          </Typography>
+        )}
       </Grid>
     </Grid>
   );

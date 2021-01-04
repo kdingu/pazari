@@ -4,6 +4,18 @@ import * as C from "../../constant";
 
 // actions
 
+export const openDrawer = () => ({
+  type: C.OPEN_DRAWER,
+});
+
+export const closeDrawer = () => ({
+  type: C.CLOSE_DRAWER,
+});
+
+export const setProductInDrawer = (product) => {
+  return { type: C.SET_PRODUCT_IN_DRAWER, payload: { product } };
+};
+
 export const setProducts = ({ data, meta }) => {
   return {
     type: C.SET_PRODUCTS,
@@ -24,6 +36,11 @@ export const appendProducts = ({ data, meta }) => {
   };
 };
 
+export const setSearchString = (searchString) => ({
+  type: C.SET_SEARCH_STRING,
+  payload: { searchString },
+});
+
 // thunks
 
 export const fetchProductsAsync = () => {
@@ -40,10 +57,13 @@ export const search = (searchString) => {
       const { data, meta } = await commerce.products.list(query);
       if (data) {
         dispatch(setProducts({ data, meta }));
+        dispatch(setSearchString(searchString));
       } else {
+        dispatch(setSearchString(""));
         throw "Asnjë rezultat.";
       }
     } catch (error) {
+      dispatch(setSearchString(""));
       throw error;
     }
   };

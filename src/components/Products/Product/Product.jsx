@@ -12,7 +12,11 @@ import React, { useState } from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
 import { useDispatch } from "react-redux";
-import { cartActions, generalActions } from "../../../store/actions";
+import {
+  cartActions,
+  generalActions,
+  productActions,
+} from "../../../store/actions";
 import { changeErrorsCount } from "../../../store/actions/general/actions";
 
 const Product = ({ product }) => {
@@ -20,10 +24,16 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
 
   const classes = useStyles();
+
+  const setProductInDrawerAndOpenDrawer = () => {
+    dispatch(productActions.setProductInDrawer(product));
+    dispatch(productActions.openDrawer());
+  };
+
   return (
     <div>
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea onClick={setProductInDrawerAndOpenDrawer}>
           <CardMedia
             className={classes.media}
             image={

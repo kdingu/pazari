@@ -7,6 +7,9 @@ export default makeStyles((theme) => ({
     alignItems: "stretch",
     backgroundColor: theme.palette.primary.main,
     boxShadow: "0px 10px 15px rgba(0,0,0,0.35)",
+    [theme.breakpoints.down("md")]: {
+      height: "max-content",
+    },
   },
   innerGrid: {
     height: "100%",

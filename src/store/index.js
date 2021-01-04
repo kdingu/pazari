@@ -3,7 +3,13 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
 const initialState = {
-  products: { data: [], meta: {} },
+  products: {
+    data: [],
+    meta: {},
+    searchString: "",
+    productDrawer: false,
+    productInDrawer: {},
+  },
   categories: [],
   cart: {
     line_items: [],

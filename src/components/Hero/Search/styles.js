@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     width: "100%",
     color: "white",
   },
-  noSearchResult: {
+  infoText: {
     color: "white",
   },
 }));

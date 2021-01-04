@@ -85,7 +85,7 @@ const MySnackbar = () => {
       key={messageInfo ? messageInfo.key : undefined}
       anchorOrigin={{
         vertical: "bottom",
-        horizontal: "center",
+        horizontal: "right",
       }}
       TransitionComponent={slide}
       open={open}
@@ -93,7 +93,11 @@ const MySnackbar = () => {
       onClose={handleClose}
       onExited={handleExited}
     >
-      <Alert severity="success" variant="filled">
+      <Alert
+        severity="success"
+        variant="filled"
+        style={{ boxShadow: "0px 5px 10px rgba(0,0,0,0.5)" }}
+      >
         {messageInfo && messageInfo.message}
       </Alert>
     </Snackbar>

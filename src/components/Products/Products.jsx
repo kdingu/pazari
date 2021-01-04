@@ -8,6 +8,7 @@ import Hero from "../Hero/Hero";
 import Toolbar from "../Toolbar/Toolbar";
 
 import useStyles from "./styles";
+import ProductDrawer from "../ProductDrawer/ProductDrawer";
 
 const Products = () => {
   const [loadingMore, setLoadingMore] = useState(false);
@@ -68,8 +69,12 @@ const Products = () => {
           "https://images.unsplash.com/photo-1552083974-186346191183?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=40"
         }
       />
-      <Toolbar />
       {/* <Categories /> */}
+      <Toolbar />
+
+      {/* Single Product View */}
+      <ProductDrawer />
+
       <Container className={classes.main}>
         <ProductsGrid />
       </Container>

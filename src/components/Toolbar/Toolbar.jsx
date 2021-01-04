@@ -14,10 +14,14 @@ const Toolbar = () => {
       <Container>
         <Grid container className={classes.innerGrid}>
           {categories.map((cat) => (
-            <Grid key={cat.id} item xs={6} lg={3}>
+            <Grid key={cat.id} item xs={12} md={6} lg={3}>
               <Button
                 onClick={() =>
-                  dispatch(productActions.searchByCategoryId(cat.id))
+                  dispatch(productActions.searchByCategoryId(cat.id)).then(
+                    () => {
+                      dispatch(productActions.setSearchString(cat.name));
+                    }
+                  )
                 }
                 className={classes.button}
               >
