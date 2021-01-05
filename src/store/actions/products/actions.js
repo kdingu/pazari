@@ -43,6 +43,20 @@ export const setSearchString = (searchString) => ({
 
 // thunks
 
+export const setProductInDrawerById = (productId) => {
+  return async (dispatch, getState) => {
+    let product = getState().products.data.filter(
+      (product) => product.id === productId
+    )[0];
+
+    if (!product) {
+      product = await commerce.products.retrieve(productId);
+    }
+
+    dispatch(setProductInDrawer(product));
+  };
+};
+
 export const fetchProductsAsync = () => {
   return async (dispatch) => {
     const { data, meta } = await commerce.products.list();

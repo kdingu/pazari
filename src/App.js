@@ -14,6 +14,7 @@ import Snackbar from "./components/Snackbar";
 
 const App = () => {
   const dispatch = useDispatch();
+
   React.useEffect(() => {
     console.log("app mounted");
     const unsubStore = store.subscribe(() =>

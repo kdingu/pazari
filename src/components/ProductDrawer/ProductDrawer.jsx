@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   Drawer,
   FormControl,
   Grid,
@@ -7,7 +8,7 @@ import {
   Select,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -18,7 +19,8 @@ import {
   generalActions,
   productActions,
 } from "../../store/actions";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 
 const formatter = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -28,7 +30,7 @@ const formatter = new Intl.NumberFormat("en-GB", {
 const ProductDrawer = () => {
   const classes = useStyles();
 
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, unregister } = useForm();
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.productInDrawer);
@@ -36,9 +38,22 @@ const ProductDrawer = () => {
 
   const [selectedOptionsPrice, setSelectedOptionsPrice] = useState(0);
   const [disabled, setDisabled] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
+
+  useEffect(() => {
+    if (selectedOptionsPrice !== 0) setSelectedOptionsPrice(0);
+    // unregister(["variant", "option"]);
+  }, [product]);
 
   const closeDrawer = () => {
     dispatch(productActions.closeDrawer());
+  };
+
+  const setProductInDrawer = (productId) => {
+    setShowSpinner(true);
+    dispatch(productActions.setProductInDrawerById(productId)).then(() =>
+      setShowSpinner(false)
+    );
   };
 
   const images = product.assets?.map((asset) => ({
@@ -66,22 +81,25 @@ const ProductDrawer = () => {
       option,
     }));
 
+    console.log(data);
+
     let total = 0;
     for (const selected of transformed) {
-      if (!selected.option) continue;
-      let options = product.variants.filter(
-        (variant) => variant.id === selected.variant
-      )[0].options;
-      let selectedOption = options.filter(
-        (option) => option.id === selected.option
-      )[0];
-      total += selectedOption.price.raw;
+      console.log(selected);
+      // if (!selected.option) continue;
+      // let ops = product.variants.filter(
+      //   (variant) => variant.id === selected.variant
+      // )[0].options;
+      // let selectedOption = ops.filter(
+      //   (option) => option.id === selected.option
+      // )[0];
+      // total += selectedOption.price.raw;
     }
 
     setSelectedOptionsPrice(total);
   };
 
-  if (!product.id) return null;
+  if (!product || !product.id) return null;
 
   return (
     <>
@@ -93,6 +111,11 @@ const ProductDrawer = () => {
       >
         <div className={classes.main} role="presentation">
           <div className={classes.wrapper}>
+            {showSpinner && (
+              <div className={classes.loader}>
+                <CircularProgress />
+              </div>
+            )}
             {/* product image */}
             <div className={classes.imageContainer}>
               <ImageGallery items={images} showPlayButton={false} />
@@ -100,46 +123,66 @@ const ProductDrawer = () => {
 
             {/* product details */}
             <div className={classes.details}>
-              <form onSubmit={(e) => e.preventDefault()}>
-                <Grid container spacing={5}>
-                  <Grid item xs={12}>
-                    <Typography variant="h5" component="h2" align="center">
-                      <strong>{product.name}</strong>
-                    </Typography>
-                  </Grid>
+              {/* <form onSubmit={(e) => e.preventDefault()}> */}
+              <Grid container spacing={0}>
+                <Grid item xs={12}>
+                  <Typography
+                    className={classes.productTitle}
+                    variant="h5"
+                    component="h2"
+                    align="center"
+                  >
+                    <strong>{product.name}</strong>
+                  </Typography>
+                </Grid>
 
-                  <Grid container item xs={12}>
-                    <Grid item xs={6}>
+                <Grid
+                  container
+                  spacing={0}
+                  item
+                  xs={12}
+                  alignItems="flex-start"
+                  className={classes.mainDetails}
+                >
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    md={6}
+                    className={classes.description}
+                  >
+                    <Grid item xs={12}>
                       <Typography variant="h6">Përshkrimi</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
                       <span
                         dangerouslySetInnerHTML={{
                           __html: `${product.description}`,
                         }}
                       ></span>
                     </Grid>
-                    <Grid item xs={6}>
-                      {product.variants?.length ? (
+                  </Grid>
+                  <Grid container spacing={0} item xs={12} md={6}>
+                    {product.variants?.length ? (
+                      <>
+                        <Grid item xs={12}>
+                          <Typography variant="h6" style={{ marginBottom: 16 }}>
+                            Variantet e disponueshme
+                          </Typography>
+                        </Grid>
                         <Grid container item xs={12}>
-                          <Grid item xs={12}>
-                            <Typography variant="h6">
-                              Variantet e disponueshme
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            container
-                            item
-                            xs={12}
-                            style={{ marginTop: 26 }}
-                          >
-                            {product.variants.map((variant) => (
-                              <Grid
-                                key={variant.id}
-                                style={{ marginTop: 16 }}
-                                item
-                                xs={12}
-                              >
+                          {product.variants.map((variant) => (
+                            <Grid
+                              key={variant.id}
+                              item
+                              xs={12}
+                              style={{
+                                marginBottom: 16,
+                              }}
+                            >
+                              <form onSubmit={(e) => e.preventDefault()}>
                                 <FormControl required fullWidth>
-                                  <InputLabel htmlFor="variant-native-select">
+                                  <InputLabel htmlFor={variant.id}>
                                     {variant.name}
                                   </InputLabel>
                                   <Select
@@ -147,59 +190,90 @@ const ProductDrawer = () => {
                                     native
                                     inputProps={{
                                       name: variant.id,
-                                      id: "variant-native-select",
+                                      id: variant.id,
                                       ref: register,
                                     }}
                                     onChange={handleSubmit(updatePrice)}
                                   >
                                     {variant.options.map((option) => (
-                                      <option key={option.id} value={option.id}>
+                                      <option
+                                        key={option.id}
+                                        value={option.id}
+                                        disabled={
+                                          option.is.quantity_limited &&
+                                          option.quantity === 0
+                                        }
+                                      >
                                         {option.name}{" "}
-                                        {option.price.raw !== 0 &&
-                                          `(+ ${option.price.formatted_with_code})`}
+                                        {option.is.quantity_limited &&
+                                        option.quantity === 0
+                                          ? "ska gjendje"
+                                          : option.price.raw === 0
+                                          ? null
+                                          : `+${option.price.formatted_with_code}`}
                                       </option>
                                     ))}
                                   </Select>
                                 </FormControl>
-                              </Grid>
-                            ))}
-                          </Grid>
+                              </form>
+                            </Grid>
+                          ))}
                         </Grid>
-                      ) : null}
+                      </>
+                    ) : null}
 
-                      <Grid item xs={12}>
-                        <Typography variant="h6">Çmimi</Typography>
-                        <Typography>
-                          {formatter.format(
-                            product.price.raw + selectedOptionsPrice
-                          )}
-                        </Typography>
-                      </Grid>
+                    <Grid item xs={12}>
+                      <Typography variant="h6">Çmimi</Typography>
+                      <Typography>
+                        {formatter.format(
+                          product.price.raw + selectedOptionsPrice
+                        )}
+                      </Typography>
+                    </Grid>
 
-                      {/* product actions */}
-                      <Grid item xs={12}>
-                        <Button
-                          disabled={disabled}
-                          size="large"
-                          color="primary"
-                          variant="contained"
-                          startIcon={<AddShoppingCart />}
-                          onClick={handleSubmit(addToCart)}
-                        >
-                          Shto në shportë
-                        </Button>
-                      </Grid>
+                    {/* product actions */}
+                    <Grid item xs={12}>
+                      <Button
+                        style={{ marginTop: 36 }}
+                        disabled={disabled}
+                        size="large"
+                        color="primary"
+                        variant="contained"
+                        disableElevation
+                        startIcon={<AddShoppingCart />}
+                        onClick={handleSubmit(addToCart)}
+                      >
+                        Shto në shportë
+                      </Button>
                     </Grid>
                   </Grid>
+                </Grid>
 
-                  {/* related products */}
-                  {product.related_products.length ? (
+                {/* related products */}
+                {product.related_products.length ? (
+                  <Grid container spacing={1} item xs={12}>
                     <Grid item xs={12}>
                       <Typography variant="h6">Produkte të ngjashme</Typography>
                     </Grid>
-                  ) : null}
-                </Grid>
-              </form>
+                    {product.related_products.map((product) => (
+                      <Grid
+                        key={product.id}
+                        item
+                        xs={12}
+                        md={6}
+                        lg={4}
+                        align="center"
+                      >
+                        <RelatedProducts
+                          product={product}
+                          handleClick={setProductInDrawer}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                ) : null}
+              </Grid>
+              {/* </form> */}
             </div>
           </div>
         </div>

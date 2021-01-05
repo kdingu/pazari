@@ -1,6 +1,18 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+  loader: {
+    zIndex: 1000,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(255,255,255,0.8)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   main: {
     maxWidth: "1200px",
     minWidth: "40vw",
@@ -50,5 +62,16 @@ export default makeStyles((theme) => ({
     textAlign: "right",
     padding: "20px",
     width: "100%",
+  },
+  productTitle: {
+    marginBottom: 36,
+  },
+  mainDetails: {
+    marginBottom: 36,
+  },
+  description: {
+    [theme.breakpoints.up("md")]: {
+      paddingRight: 36,
+    },
   },
 }));
