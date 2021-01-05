@@ -1,15 +1,8 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import { useSelector } from "react-redux";
 import { Alert } from "@material-ui/lab";
 import { Slide } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  close: {
-    padding: theme.spacing(0.5),
-  },
-}));
 
 var prevItems = 0;
 var prevErrors;
@@ -79,7 +72,6 @@ const MySnackbar = () => {
     setMessageInfo(undefined);
   };
 
-  const classes = useStyles();
   return (
     <Snackbar
       key={messageInfo ? messageInfo.key : undefined}

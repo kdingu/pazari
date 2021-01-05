@@ -2,14 +2,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   main: {
-    maxWidth: "90vw",
+    maxWidth: "1200px",
     minWidth: "40vw",
     [theme.breakpoints.down("md")]: {
-      // maxWidth: "70vw",
+      maxWidth: "70vw",
       minWidth: "60vw",
     },
     [theme.breakpoints.down("sm")]: {
-      // maxWidth: "80vw",
+      maxWidth: "80vw",
       minWidth: "70vw",
     },
     backgroundColor: theme.palette.background.default,

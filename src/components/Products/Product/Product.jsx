@@ -17,7 +17,6 @@ import {
   generalActions,
   productActions,
 } from "../../../store/actions";
-import { changeErrorsCount } from "../../../store/actions/general/actions";
 
 const Product = ({ product }) => {
   const [disabled, setDisabled] = useState(false);

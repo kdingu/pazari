@@ -5,14 +5,7 @@ import { useDispatch } from "react-redux";
 import { fetchProductsAsync } from "./store/actions/products/actions";
 import { fetchCartAsync } from "./store/actions/cart/actions";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {
-  Navbar,
-  Home,
-  Products,
-  Cart,
-  Checkout,
-  OrderSuccess,
-} from "./components";
+import { Navbar, Products, Cart, Checkout, OrderSuccess } from "./components";
 import store from "./store";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./lib/MuiTheme/theme";
@@ -46,9 +39,6 @@ const App = () => {
         <Snackbar />
 
         <Switch>
-          {/* <Route exact path="/">
-            <Home />
-          </Route> */}
           <Route exact path="/">
             <Products />
           </Route>

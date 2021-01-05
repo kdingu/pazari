@@ -60,7 +60,7 @@ export const search = (searchString) => {
         dispatch(setSearchString(searchString));
       } else {
         dispatch(setSearchString(""));
-        throw "Asnjë rezultat.";
+        throw new Error("Asnjë rezultat.");
       }
     } catch (error) {
       dispatch(setSearchString(""));
@@ -77,7 +77,7 @@ export const searchByCategoryId = (id) => {
       if (data) {
         dispatch(setProducts({ data, meta }));
       } else {
-        throw "Asnjë rezultat.";
+        throw new Error("Asnjë rezultat.");
       }
     } catch (error) {
       throw error;

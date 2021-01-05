@@ -1,6 +1,5 @@
-import { Grid, Typography, createMuiTheme } from "@material-ui/core";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { Grid, Typography } from "@material-ui/core";
+import React from "react";
 import useStyles from "./styles";
 import Search from "./Search/Search";
 

@@ -11,16 +11,14 @@ export default makeStyles(() => ({
     fontWeight: 600,
     fontSize: "1rem",
     color: "#122740",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    maxWidth: "300px",
   },
   caption: {
     fontSize: "0.875rem",
     color: "#758392",
     marginTop: -4,
-  },
-  name: {
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    maxWidth: "300px",
   },
 }));

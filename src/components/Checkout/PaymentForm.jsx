@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { Controller, useForm, FormProvider } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { commerce } from "../../lib/commerce";
 import {
