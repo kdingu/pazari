@@ -4,22 +4,14 @@ import {
   CardMedia,
   Typography,
   CardContent,
-  CardActions,
-  Button,
 } from "@material-ui/core";
-import { AddShoppingCart } from "@material-ui/icons";
-import React, { useState } from "react";
+import React from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
 import { useDispatch } from "react-redux";
-import {
-  cartActions,
-  generalActions,
-  productActions,
-} from "../../../store/actions";
+import { productActions } from "../../../store/actions";
 
 const Product = ({ product }) => {
-  const [disabled, setDisabled] = useState(false);
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -56,27 +48,6 @@ const Product = ({ product }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button
-            startIcon={<AddShoppingCart />}
-            color="primary"
-            aria-label="upload picture"
-            component="span"
-            disabled={disabled}
-            onClick={() => {
-              setDisabled(true);
-              dispatch(cartActions.addProductToCartAsync(product.id))
-                .then(() => setDisabled(false))
-                .catch((error) => {
-                  console.log(error);
-                  setDisabled(false);
-                  dispatch(generalActions.changeErrorsCount());
-                });
-            }}
-          >
-            {disabled ? "Prisni..." : "Shto në shportë"}
-          </Button>
-        </CardActions>
       </Card>
     </div>
   );
