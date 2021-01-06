@@ -11,7 +11,7 @@ import { noImageUrl } from "../../../constant";
 import { useDispatch } from "react-redux";
 import { productActions } from "../../../store/actions";
 
-const Product = ({ product }) => {
+const Product = ({ product, handleClick = undefined }) => {
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -23,8 +23,14 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <Card className={classes.root}>
-        <CardActionArea onClick={setProductInDrawerAndOpenDrawer}>
+      <Card variant="outlined" className={classes.root}>
+        <CardActionArea
+          onClick={
+            handleClick
+              ? () => handleClick(product.id)
+              : setProductInDrawerAndOpenDrawer
+          }
+        >
           <CardMedia
             className={classes.media}
             image={

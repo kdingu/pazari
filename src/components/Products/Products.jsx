@@ -8,7 +8,7 @@ import Hero from "../Hero/Hero";
 import Toolbar from "../Toolbar/Toolbar";
 
 import useStyles from "./styles";
-import ProductDrawer from "../ProductDrawer/ProductDrawer";
+import ProductDrawer from "./ProductDrawer/ProductDrawer";
 
 const Products = () => {
   const [loadingMore, setLoadingMore] = useState(false);

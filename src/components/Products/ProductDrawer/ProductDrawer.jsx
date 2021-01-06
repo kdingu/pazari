@@ -18,9 +18,9 @@ import {
   cartActions,
   generalActions,
   productActions,
-} from "../../store/actions";
+} from "../../../store/actions";
 import { useForm, Controller } from "react-hook-form";
-import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import RelatedProducts from "../Product/Product";
 
 const formatter = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -42,7 +42,6 @@ const ProductDrawer = () => {
 
   useEffect(() => {
     if (selectedOptionsPrice !== 0) setSelectedOptionsPrice(0);
-    // unregister(["variant", "option"]);
   }, [product]);
 
   const closeDrawer = () => {
@@ -256,14 +255,7 @@ const ProductDrawer = () => {
                       <Typography variant="h6">Produkte të ngjashme</Typography>
                     </Grid>
                     {product.related_products.map((product) => (
-                      <Grid
-                        key={product.id}
-                        item
-                        xs={12}
-                        md={6}
-                        lg={4}
-                        align="center"
-                      >
+                      <Grid key={product.id} item xs={12} md={6} lg={4}>
                         <RelatedProducts
                           product={product}
                           handleClick={setProductInDrawer}
