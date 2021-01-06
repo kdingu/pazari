@@ -10,8 +10,6 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
 import { AddShoppingCart } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,7 +17,8 @@ import {
   generalActions,
   productActions,
 } from "../../../store/actions";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import ImageCarousel from "./ImageCarousel/ImageCarousel";
 import RelatedProducts from "../Product/Product";
 
 const formatter = new Intl.NumberFormat("en-GB", {
@@ -30,7 +29,7 @@ const formatter = new Intl.NumberFormat("en-GB", {
 const ProductDrawer = () => {
   const classes = useStyles();
 
-  const { handleSubmit, register, unregister } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.productInDrawer);
@@ -55,11 +54,7 @@ const ProductDrawer = () => {
     );
   };
 
-  const images = product.assets?.map((asset) => ({
-    original: asset.url,
-    thumbnail: asset.url,
-    originalClass: "productimage",
-  }));
+  const images = product.assets?.map((asset) => asset.url);
 
   const addToCart = (data) => {
     console.log(data);
@@ -98,6 +93,27 @@ const ProductDrawer = () => {
     setSelectedOptionsPrice(total);
   };
 
+  const primaryOptions = {
+    type: "loop",
+    perPage: 1,
+    perMove: 1,
+    gap: "1rem",
+    pagination: false,
+  };
+
+  const thumbnailOptions = {
+    type: "slide",
+    rewind: true,
+    gap: "1rem",
+    pagination: false,
+    fixedWidth: 110,
+    fixedHeight: 70,
+    cover: true,
+    focus: "center",
+    isNavigation: true,
+    updateOnMove: true,
+  };
+
   if (!product || !product.id) return null;
 
   return (
@@ -109,165 +125,17 @@ const ProductDrawer = () => {
         onClose={closeDrawer}
       >
         <div className={classes.main} role="presentation">
-          <div className={classes.wrapper}>
-            {showSpinner && (
-              <div className={classes.loader}>
-                <CircularProgress />
-              </div>
-            )}
-            {/* product image */}
-            <div className={classes.imageContainer}>
-              <ImageGallery items={images} showPlayButton={false} />
-            </div>
+          <Grid container spacing={5}>
+            {/* product images gallery */}
+            <Grid item xs={12} lg={6}>
+              <ImageCarousel images={images} />
+            </Grid>
 
             {/* product details */}
-            <div className={classes.details}>
-              {/* <form onSubmit={(e) => e.preventDefault()}> */}
-              <Grid container spacing={0}>
-                <Grid item xs={12}>
-                  <Typography
-                    className={classes.productTitle}
-                    variant="h5"
-                    component="h2"
-                    align="center"
-                  >
-                    <strong>{product.name}</strong>
-                  </Typography>
-                </Grid>
-
-                <Grid
-                  container
-                  spacing={0}
-                  item
-                  xs={12}
-                  alignItems="flex-start"
-                  className={classes.mainDetails}
-                >
-                  <Grid
-                    container
-                    item
-                    xs={12}
-                    md={6}
-                    className={classes.description}
-                  >
-                    <Grid item xs={12}>
-                      <Typography variant="h6">Përshkrimi</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: `${product.description}`,
-                        }}
-                      ></span>
-                    </Grid>
-                  </Grid>
-                  <Grid container spacing={0} item xs={12} md={6}>
-                    {product.variants?.length ? (
-                      <>
-                        <Grid item xs={12}>
-                          <Typography variant="h6" style={{ marginBottom: 16 }}>
-                            Variantet e disponueshme
-                          </Typography>
-                        </Grid>
-                        <Grid container item xs={12}>
-                          {product.variants.map((variant) => (
-                            <Grid
-                              key={variant.id}
-                              item
-                              xs={12}
-                              style={{
-                                marginBottom: 16,
-                              }}
-                            >
-                              <form onSubmit={(e) => e.preventDefault()}>
-                                <FormControl required fullWidth>
-                                  <InputLabel htmlFor={variant.id}>
-                                    {variant.name}
-                                  </InputLabel>
-                                  <Select
-                                    defaultValue={variant.options[0].id}
-                                    native
-                                    inputProps={{
-                                      name: variant.id,
-                                      id: variant.id,
-                                      ref: register,
-                                    }}
-                                    onChange={handleSubmit(updatePrice)}
-                                  >
-                                    {variant.options.map((option) => (
-                                      <option
-                                        key={option.id}
-                                        value={option.id}
-                                        disabled={
-                                          option.is.quantity_limited &&
-                                          option.quantity === 0
-                                        }
-                                      >
-                                        {option.name}{" "}
-                                        {option.is.quantity_limited &&
-                                        option.quantity === 0
-                                          ? "ska gjendje"
-                                          : option.price.raw === 0
-                                          ? null
-                                          : `+${option.price.formatted_with_code}`}
-                                      </option>
-                                    ))}
-                                  </Select>
-                                </FormControl>
-                              </form>
-                            </Grid>
-                          ))}
-                        </Grid>
-                      </>
-                    ) : null}
-
-                    <Grid item xs={12}>
-                      <Typography variant="h6">Çmimi</Typography>
-                      <Typography>
-                        {formatter.format(
-                          product.price.raw + selectedOptionsPrice
-                        )}
-                      </Typography>
-                    </Grid>
-
-                    {/* product actions */}
-                    <Grid item xs={12}>
-                      <Button
-                        style={{ marginTop: 36 }}
-                        disabled={disabled}
-                        size="large"
-                        color="primary"
-                        variant="contained"
-                        disableElevation
-                        startIcon={<AddShoppingCart />}
-                        onClick={handleSubmit(addToCart)}
-                      >
-                        Shto në shportë
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Grid>
-
-                {/* related products */}
-                {product.related_products.length ? (
-                  <Grid container spacing={1} item xs={12}>
-                    <Grid item xs={12}>
-                      <Typography variant="h6">Produkte të ngjashme</Typography>
-                    </Grid>
-                    {product.related_products.map((product) => (
-                      <Grid key={product.id} item xs={12} md={6} lg={4}>
-                        <RelatedProducts
-                          product={product}
-                          handleClick={setProductInDrawer}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                ) : null}
-              </Grid>
-              {/* </form> */}
-            </div>
-          </div>
+            <Grid container item xs={12} lg={6}>
+              details
+            </Grid>
+          </Grid>
         </div>
       </Drawer>
     </>
