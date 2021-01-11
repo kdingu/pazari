@@ -10,7 +10,7 @@ import {
   Select,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useStyles from "./styles";
 import { AddShoppingCart } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +29,8 @@ const formatter = new Intl.NumberFormat("en-GB", {
 
 const ProductDrawer = () => {
   const classes = useStyles();
+
+  const form = useRef();
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.productInDrawer);
@@ -59,7 +61,6 @@ const ProductDrawer = () => {
         total += option[0]?.price.raw || 0;
       }
       // update selectedOptionsPrice
-      console.log(total);
       setSelectedOptionsPrice(total);
     };
 
@@ -83,7 +84,25 @@ const ProductDrawer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
+    const data = [];
+    // extraxt form data
+    for (const sth of e.target) {
+      if (sth.type === "text") {
+        data.push({ variant: sth.name, option: sth.value });
+      }
+    }
+
+    // transform variants data to requested commercejs format
+    const variants = {};
+    for (const variant of data) {
+      variants[variant.variant] = variant.option;
+    }
+
+    // add product to cart
+    setShowSpinner(true);
+    dispatch(
+      cartActions.addProductToCartAsync(product.id, 1, variants)
+    ).then(() => setShowSpinner(false));
   };
 
   const ProductVariants = ({ variant }) => (
@@ -136,7 +155,7 @@ const ProductDrawer = () => {
             <CircularProgress />
           </div>
         ) : null}
-        <form onSubmit={handleSubmit}>
+        <form ref={form} onSubmit={handleSubmit}>
           <Grid
             container
             spacing={5}
@@ -167,7 +186,7 @@ const ProductDrawer = () => {
 
               <Grid item xs={12}>
                 <Typography variant="h5">Përshkrimi i produktit:</Typography>
-                <Typography variant="p">
+                <Typography variant="body1">
                   <span
                     dangerouslySetInnerHTML={{
                       __html: `${product.description}`,
@@ -183,7 +202,7 @@ const ProductDrawer = () => {
                   </Typography>
                   <Grid container spacing={1}>
                     {product.variants.map((variant) => (
-                      <ProductVariants variant={variant} />
+                      <ProductVariants key={variant.id} variant={variant} />
                     ))}
                   </Grid>
                 </Grid>
@@ -213,7 +232,12 @@ const ProductDrawer = () => {
                     <Typography variant="h5">Produkte të ngjashme:</Typography>
                     <Grid container spacing={1}>
                       {product.related_products.map((product) => (
-                        <Grid item xs={6} style={{ marginTop: "26px" }}>
+                        <Grid
+                          key={product.id}
+                          item
+                          xs={6}
+                          style={{ marginTop: "26px" }}
+                        >
                           <Product
                             product={product}
                             handleClick={() => setProductInDrawer(product.id)}

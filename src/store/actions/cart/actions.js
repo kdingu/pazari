@@ -61,19 +61,20 @@ export const refreshCartAsync = () => {
   };
 };
 
-export const addProductToCartAsync = (productId, quantity = 1, variant) => {
+export const addProductToCartAsync = (id, quantity = 1, variant) => {
   return async (dispatch) => {
     try {
-      const { cart } = await commerce.cart.add(productId, quantity, variant);
+      const res = await commerce.cart.add(id, quantity, variant);
       const ourCart = {
-        id: cart.id,
-        line_items: [...cart.line_items],
-        total_items: cart.total_items,
-        total_unique_items: cart.total_unique_items,
-        subtotal: { ...cart.subtotal },
+        id: res.cart.id,
+        line_items: [...res.cart.line_items],
+        total_items: res.cart.total_items,
+        total_unique_items: res.cart.total_unique_items,
+        subtotal: { ...res.cart.subtotal },
       };
       dispatch(addProductToCart(ourCart));
     } catch (error) {
+      console.log(error);
       throw error;
     }
   };
