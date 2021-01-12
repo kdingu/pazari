@@ -67,13 +67,21 @@ const AddressForm = ({ checkoutId, next }) => {
   }, [country]);
 
   useEffect(() => {
-    if (country && subdivision !== prevSubdivision)
+    if (country && subdivision && subdivision !== prevSubdivision) {
       dispatch(
         checkoutActions.getShippingOptions(checkoutId, country, subdivision)
-      ).then((op) => {
-        const opId = op[0]?.id || false;
-        if (opId) dispatch(checkoutActions.setShippingOption(opId));
-      });
+      )
+        .then((op) => {
+          const opId = op[0]?.id || false;
+          if (opId) dispatch(checkoutActions.setShippingOption(opId));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      dispatch(checkoutActions.setShippingOptions([]));
+      dispatch(checkoutActions.setShippingOption(""));
+    }
   }, [subdivision]);
 
   const handleCountryChange = (e) => {
@@ -129,6 +137,8 @@ const AddressForm = ({ checkoutId, next }) => {
               defaultValue={city}
             />
             <FormInput label="ZIP" name="zip" required defaultValue={zip} />
+
+            {/* shipping country */}
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth required color="secondary">
                 <InputLabel>Shteti i dërgesës</InputLabel>
@@ -143,6 +153,7 @@ const AddressForm = ({ checkoutId, next }) => {
               </FormControl>
             </Grid>
 
+            {/* shipping subdivision */}
             <Grid item xs={12} sm={6}>
               <FormControl
                 fullWidth
@@ -166,6 +177,7 @@ const AddressForm = ({ checkoutId, next }) => {
               </FormControl>
             </Grid>
 
+            {/* shipping option */}
             <Grid item xs={12}>
               <FormControl
                 fullWidth
