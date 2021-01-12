@@ -10,6 +10,7 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     paddingLeft: "20px",
     paddingRight: "20px",
+    zIndex: "100",
   },
   grid: {
     width: "100%",

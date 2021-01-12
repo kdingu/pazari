@@ -4,9 +4,10 @@ import { Container, Grid } from "@material-ui/core";
 import Product from "./Product/Product";
 import Hero from "../Hero/Hero";
 import Toolbar from "../Toolbar/Toolbar";
+import ProductDrawer from "./ProductDrawer/ProductDrawer";
 
 import useStyles from "./styles";
-import ProductDrawer from "./ProductDrawer/ProductDrawer";
+import bg from "../../assests/pazari-bg.svg";
 
 const Products = () => {
   const classes = useStyles();
@@ -19,15 +20,17 @@ const Products = () => {
         {data.length &&
           data.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-              <Product product={product} />
+              <Product raised product={product} />
             </Grid>
           ))}
       </Grid>
     </Grid>
   );
 
+  console.log(bg);
+
   return (
-    <>
+    <div className={classes.root}>
       <div className={classes.toolbar} />
       <Hero
         withSearch
@@ -46,7 +49,7 @@ const Products = () => {
       <Container className={classes.main}>
         <ProductsGrid />
       </Container>
-    </>
+    </div>
   );
 };
 
