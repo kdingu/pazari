@@ -3,7 +3,6 @@ import { commerce } from "../../../lib/commerce";
 import * as C from "../../constant";
 
 // actions
-
 export const setCart = (cart) => ({
   type: C.SET_CART,
   payload: { cart },
@@ -25,7 +24,6 @@ export const removeProductFromCart = (cart) => ({
 });
 
 // thunks
-
 export const fetchCartAsync = () => {
   return async (dispatch) => {
     try {
