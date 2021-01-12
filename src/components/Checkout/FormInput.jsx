@@ -6,7 +6,7 @@ const FormInput = ({
   name,
   label,
   required,
-  color = "secondary",
+  color = "primary",
   defaultValue,
 }) => {
   const { control } = useFormContext();
