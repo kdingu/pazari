@@ -22,6 +22,7 @@ import {
 } from "../../../store/actions";
 import ImageCarousel from "./ImageCarousel/ImageCarousel";
 import Product from "../Product/Product";
+import { Link } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -36,6 +37,7 @@ const ProductDrawer = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.productInDrawer);
   const open = useSelector((state) => state.products.productDrawer);
+  const cart = useSelector((state) => state.cart);
 
   const [state, setState] = useState({});
   const [selectedOptionsPrice, setSelectedOptionsPrice] = useState(0);
@@ -220,10 +222,26 @@ const ProductDrawer = () => {
                   disableElevation
                   color="secondary"
                   type="submit"
+                  style={{ minWidth: "250px" }}
                 >
                   Shto në shportë
                 </Button>
               </Grid>
+              {cart.line_items?.length > 0 && (
+                <Grid item xs={12} align="right" style={{ marginTop: "6px" }}>
+                  <Link to="/cart">
+                    <Button
+                      size="large"
+                      variant="outlined"
+                      disableElevation
+                      color="primary"
+                      style={{ minWidth: "250px" }}
+                    >
+                      Shiko Shportën
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
 
               {product.related_products?.length ? (
                 <>
