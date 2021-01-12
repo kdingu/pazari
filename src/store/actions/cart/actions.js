@@ -39,6 +39,7 @@ export const fetchCartAsync = () => {
       };
       dispatch(setCart(ourCart));
     } catch (error) {
+      dispatch(generalActions.changeErrorsCount());
       throw error;
     }
   };
@@ -57,6 +58,7 @@ export const refreshCartAsync = () => {
       };
       dispatch(setCart(ourCart));
     } catch (error) {
+      dispatch(generalActions.changeErrorsCount());
       throw error;
     }
   };
@@ -75,7 +77,6 @@ export const addProductToCartAsync = (id, quantity = 1, variant) => {
       };
       dispatch(addProductToCart(ourCart));
     } catch (error) {
-      console.log(error);
       dispatch(generalActions.changeErrorsCount());
       throw error;
     }
@@ -95,6 +96,7 @@ export const updateProductQtyAsync = (productId, quantity) => {
       };
       dispatch(updateProductQty(ourCart));
     } catch (error) {
+      dispatch(generalActions.changeErrorsCount());
       throw error;
     }
   };
@@ -113,6 +115,7 @@ export const removeProductFromCartAsync = (productId) => {
       };
       dispatch(removeProductFromCart(ourCart));
     } catch (error) {
+      dispatch(generalActions.changeErrorsCount());
       throw error;
     }
   };
@@ -124,6 +127,7 @@ export const emptyCartAsync = () => {
       const { cart } = await commerce.cart.empty();
       dispatch(setCart(cart));
     } catch (error) {
+      dispatch(generalActions.changeErrorsCount());
       throw error;
     }
   };
