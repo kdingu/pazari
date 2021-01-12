@@ -204,6 +204,7 @@ const PaymentForm = ({ back }) => {
               xs={12}
             >
               <Grid item xs={12}>
+                {/* card number */}
                 <Controller
                   control={methods.control}
                   as={TextField}
@@ -218,8 +219,14 @@ const PaymentForm = ({ back }) => {
                   fullWidth
                   defaultValue=""
                 />
+                {methods.errors.cardnumber && (
+                  <Typography variant="caption" color="error">
+                    Numri i kartës nuk është i vlefshëm
+                  </Typography>
+                )}
               </Grid>
               <Grid item xs={12} sm={4}>
+                {/* CVC number */}
                 <Controller
                   control={methods.control}
                   as={TextField}
@@ -233,8 +240,14 @@ const PaymentForm = ({ back }) => {
                   fullWidth
                   defaultValue=""
                 />
+                {methods.errors.cvc && (
+                  <Typography variant="caption" color="error">
+                    Numri CVC nuk është i vlefshëm
+                  </Typography>
+                )}
               </Grid>
               <Grid item xs={12} sm={4}>
+                {/* Exp Month */}
                 <Controller
                   control={methods.control}
                   as={TextField}
@@ -250,8 +263,14 @@ const PaymentForm = ({ back }) => {
                   fullWidth
                   defaultValue=""
                 />
+                {methods.errors.expMonth && (
+                  <Typography variant="caption" color="error">
+                    Muaji i skadimit nuk është i vlefshëm
+                  </Typography>
+                )}
               </Grid>
               <Grid item xs={12} sm={4}>
+                {/* Exp Year */}
                 <Controller
                   control={methods.control}
                   as={TextField}
@@ -266,6 +285,11 @@ const PaymentForm = ({ back }) => {
                   fullWidth
                   defaultValue=""
                 />
+                {methods.errors.expYear && (
+                  <Typography variant="caption" color="error">
+                    Viti i skadimit nuk është i vlefshëm
+                  </Typography>
+                )}
               </Grid>
             </Grid>
           </Grid>
