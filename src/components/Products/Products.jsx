@@ -19,15 +19,18 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const { data, meta } = useSelector((state) => state.products);
-  const [ready, setReady] = useState(false);
 
   const handlePageChange = (page) => {
     if (page === meta.pagination.current_page) return null;
 
     dispatch(generalActions.setBackdrop(true));
-    dispatch(productActions.goToPage(page)).then(() => {
-      dispatch(generalActions.setBackdrop(false));
-    });
+    dispatch(productActions.goToPage(page))
+      .then(() => {
+        dispatch(generalActions.setBackdrop(false));
+      })
+      .catch((error) => {
+        dispatch(generalActions.setBackdrop(false));
+      });
   };
 
   const ProductsGrid = () => (

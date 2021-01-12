@@ -78,9 +78,14 @@ const ProductDrawer = () => {
 
   const setProductInDrawer = (productId) => {
     dispatch(generalActions.setBackdrop(true));
-    dispatch(productActions.setProductInDrawerById(productId)).then(() =>
-      dispatch(generalActions.setBackdrop(false))
-    );
+    dispatch(productActions.setProductInDrawerById(productId))
+      .then(() => {
+        dispatch(generalActions.setBackdrop(false));
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(generalActions.setBackdrop(false));
+      });
   };
 
   const images = product.assets?.map((asset) => asset.url);
@@ -103,9 +108,14 @@ const ProductDrawer = () => {
 
     // add product to cart
     dispatch(generalActions.setBackdrop(true));
-    dispatch(
-      cartActions.addProductToCartAsync(product.id, 1, variants)
-    ).then(() => dispatch(generalActions.setBackdrop(false)));
+    dispatch(cartActions.addProductToCartAsync(product.id, 1, variants))
+      .then(() => {
+        dispatch(generalActions.setBackdrop(false));
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(generalActions.setBackdrop(false));
+      });
   };
 
   const ProductVariants = ({ variant }) => (

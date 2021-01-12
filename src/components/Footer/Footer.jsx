@@ -1,10 +1,13 @@
 import { Container, Grid, Typography } from "@material-ui/core";
 import React from "react";
+import { useLocation } from "react-router-dom";
 import useStyles from "./style";
 
 const Footer = () => {
   const classes = useStyles();
-  return (
+  const { pathname } = useLocation();
+
+  return pathname !== "/checkout" ? (
     <Container maxWidth="xl" className={classes.main}>
       <Container>
         <Grid container>
@@ -14,7 +17,7 @@ const Footer = () => {
         </Grid>
       </Container>
     </Container>
-  );
+  ) : null;
 };
 
 export default Footer;

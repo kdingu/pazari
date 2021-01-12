@@ -11,6 +11,7 @@ const slide = (props) => <Slide {...props} direction="up" />;
 
 const MySnackbar = () => {
   const [snackPack, setSnackPack] = React.useState([]);
+  const [alertType, setAlertType] = React.useState("success");
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState(undefined);
 
@@ -26,13 +27,14 @@ const MySnackbar = () => {
     if (errorsCount && !prevErrors) prevErrors = errorsCount;
   }, []);
 
-  // watch changed in cart total items
+  // watch changes in cart total items
   useEffect(() => {
     if (
       (totalItems && prevItems !== totalItems) ||
       (!totalItems && prevItems)
     ) {
       // show success
+      setAlertType("success");
       showSnackbar("SHPORTA U PËRDITËSUA");
       prevItems = totalItems;
     }
@@ -45,6 +47,7 @@ const MySnackbar = () => {
       (!errorsCount && prevErrors)
     ) {
       // show error
+      setAlertType("error");
       showSnackbar("PATI NJË PROBLEM");
     }
   }, [errorsCount]);
@@ -86,7 +89,7 @@ const MySnackbar = () => {
       onExited={handleExited}
     >
       <Alert
-        severity="success"
+        severity={alertType}
         variant="filled"
         style={{ boxShadow: "0px 5px 10px rgba(0,0,0,0.5)" }}
       >

@@ -1,3 +1,4 @@
+import { generalActions } from "..";
 import { commerce } from "../../../lib/commerce";
 import * as C from "../../constant";
 
@@ -75,6 +76,7 @@ export const addProductToCartAsync = (id, quantity = 1, variant) => {
       dispatch(addProductToCart(ourCart));
     } catch (error) {
       console.log(error);
+      dispatch(generalActions.changeErrorsCount());
       throw error;
     }
   };
