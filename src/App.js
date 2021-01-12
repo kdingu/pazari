@@ -49,10 +49,6 @@ const App = () => {
     return unsubStore;
   }, []);
 
-  React.useEffect(() => {
-    console.log("app update");
-  });
-
   return (
     <ThemeProvider theme={theme}>
       <Backdrop

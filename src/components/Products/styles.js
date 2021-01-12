@@ -28,4 +28,9 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  pagination: {
+    "& ul": {
+      justifyContent: "center",
+    },
+  },
 }));

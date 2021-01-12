@@ -59,7 +59,7 @@ export const setProductInDrawerById = (productId) => {
 
 export const fetchProductsAsync = () => {
   return async (dispatch) => {
-    const { data, meta } = await commerce.products.list();
+    const { data, meta } = await commerce.products.list({ limit: 5 });
     dispatch(setProducts({ data, meta }));
   };
 };
@@ -99,20 +99,31 @@ export const searchByCategoryId = (id) => {
   };
 };
 
-export const appendProductsAsync = (page) => {
-  return async (dispatch, getState) => {
+export const goToPage = (page) => {
+  return async (dispatch) => {
     try {
-      const { data, meta } = await commerce.products.list({
-        page,
-      });
-      const newData = [
-        ...cloneDeep(getState().products.data),
-        ...cloneDeep(data),
-      ];
-
-      dispatch(setProducts({ data: newData, meta }));
+      const { data, meta } = await commerce.products.list({ limit: 5, page });
+      dispatch(setProducts({ data, meta }));
     } catch (error) {
-      throw error;
+      throw new Error("Error while fetching products page");
     }
   };
 };
+
+// export const appendProductsAsync = (page) => {
+//   return async (dispatch, getState) => {
+//     try {
+//       const { data, meta } = await commerce.products.list({
+//         page,
+//       });
+//       const newData = [
+//         ...cloneDeep(getState().products.data),
+//         ...cloneDeep(data),
+//       ];
+
+//       dispatch(setProducts({ data: newData, meta }));
+//     } catch (error) {
+//       throw error;
+//     }
+//   };
+// };
