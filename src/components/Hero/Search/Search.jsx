@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { productActions } from "../../../store/actions";
+import { generalActions, productActions } from "../../../store/actions";
 import useStyles from "./styles";
 
 const theme = createMuiTheme({
@@ -95,27 +95,33 @@ const Search = () => {
   const filter = useSelector((state) => state.products.searchString);
 
   const handleSearch = () => {
-    setSearching(true);
+    // setSearching(true);
+    dispatch(generalActions.setBackdrop(true));
     dispatch(productActions.search(searchString))
       .then(() => {
-        setSearching(false);
+        // setSearching(false);
+        dispatch(generalActions.setBackdrop(false));
       })
       .catch((error) => {
         console.log(error);
-        setSearching(false);
+        // setSearching(false);
+        dispatch(generalActions.setBackdrop(false));
         setNoSearchResults(true);
       });
   };
 
   const cleanSearch = () => {
-    setSearching(true);
+    // setSearching(true);
+    dispatch(generalActions.setBackdrop(true));
     dispatch(productActions.search(""))
       .then(() => {
-        setSearching(false);
+        // setSearching(false);
+        dispatch(generalActions.setBackdrop(false));
         setSearchString("");
       })
       .catch(() => {
-        setSearching(false);
+        // setSearching(false);
+        dispatch(generalActions.setBackdrop(false));
       });
   };
 
@@ -149,7 +155,6 @@ const Search = () => {
               type="submit"
               variant="contained"
               color="secondary"
-              disabled={searching}
               disableElevation
             >
               Kërko
@@ -171,8 +176,6 @@ const Search = () => {
               variant="outlined"
               size="small"
               onClick={cleanSearch}
-              disabled={searching}
-              // style={{ marginLeft: 16 }}
             >
               Fshi filtrin
             </Button>

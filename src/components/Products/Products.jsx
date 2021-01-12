@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { productActions } from "../../store/actions";
-import { Container, Grid, CircularProgress, Button } from "@material-ui/core";
-import { AddCircleOutline } from "@material-ui/icons";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Container, Grid } from "@material-ui/core";
 import Product from "./Product/Product";
 import Hero from "../Hero/Hero";
 import Toolbar from "../Toolbar/Toolbar";
@@ -11,50 +9,20 @@ import useStyles from "./styles";
 import ProductDrawer from "./ProductDrawer/ProductDrawer";
 
 const Products = () => {
-  const [loadingMore, setLoadingMore] = useState(false);
-
-  const { data, meta } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-
   const classes = useStyles();
 
-  const handleLoadMoreProducts = (page) => {
-    setLoadingMore(true);
-    dispatch(productActions.appendProductsAsync(page + 1)).then(() =>
-      setLoadingMore(false)
-    );
-  };
+  const { data, meta } = useSelector((state) => state.products);
 
   const ProductsGrid = () => (
     <Grid container>
       <Grid container item spacing={2} className={classes.big}>
-        {data.length ? (
+        {data.length &&
           data.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
               <Product product={product} />
             </Grid>
-          ))
-        ) : (
-          <div className={classes.progressBar}>
-            <CircularProgress />
-          </div>
-        )}
+          ))}
       </Grid>
-      {data.length &&
-      meta.pagination.current_page < meta.pagination.total_pages ? (
-        <Grid item style={{ marginTop: 46 }} align="center" xs={12}>
-          <Button
-            startIcon={<AddCircleOutline />}
-            color="primary"
-            size="large"
-            disableElevation
-            disabled={loadingMore}
-            onClick={() => handleLoadMoreProducts(meta.pagination.current_page)}
-          >
-            {loadingMore ? "Prisni..." : "Ngarko më shumë produkte"}
-          </Button>
-        </Grid>
-      ) : null}
     </Grid>
   );
 

@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
   },
   loader: {
     zIndex: 1000,
-    position: "absolute",
+    position: "fixed",
     top: 0,
     left: 0,
     width: "100%",
@@ -16,5 +16,10 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  productName: {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
   },
 }));

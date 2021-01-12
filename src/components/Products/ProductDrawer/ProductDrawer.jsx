@@ -8,6 +8,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Tooltip,
   Typography,
 } from "@material-ui/core";
 import React, { useEffect, useRef, useState } from "react";
@@ -74,9 +75,9 @@ const ProductDrawer = () => {
   };
 
   const setProductInDrawer = (productId) => {
-    setShowSpinner(true);
+    dispatch(generalActions.setBackdrop(true));
     dispatch(productActions.setProductInDrawerById(productId)).then(() =>
-      setShowSpinner(false)
+      dispatch(generalActions.setBackdrop(false))
     );
   };
 
@@ -99,10 +100,10 @@ const ProductDrawer = () => {
     }
 
     // add product to cart
-    setShowSpinner(true);
+    dispatch(generalActions.setBackdrop(true));
     dispatch(
       cartActions.addProductToCartAsync(product.id, 1, variants)
-    ).then(() => setShowSpinner(false));
+    ).then(() => dispatch(generalActions.setBackdrop(false)));
   };
 
   const ProductVariants = ({ variant }) => (
@@ -150,11 +151,11 @@ const ProductDrawer = () => {
         role="presentation"
         style={{ maxHeight: "100vh" }}
       >
-        {showSpinner ? (
+        {/* {showSpinner ? (
           <div className={classes.loader}>
             <CircularProgress />
           </div>
-        ) : null}
+        ) : null} */}
         <form ref={form} onSubmit={handleSubmit}>
           <Grid
             container
@@ -171,7 +172,11 @@ const ProductDrawer = () => {
             {/* product details */}
             <Grid container item xs={12} lg={6}>
               <Grid item xs={12}>
-                <Typography variant="h2">{product.name}</Typography>
+                <Tooltip title={product.name} arrow>
+                  <Typography variant="h2" className={classes.productName}>
+                    {product.name}
+                  </Typography>
+                </Tooltip>
                 <Typography variant="h3">
                   {formatter.format(product.price.raw + selectedOptionsPrice)}
                 </Typography>

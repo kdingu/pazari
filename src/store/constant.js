@@ -1,3 +1,4 @@
+export const SET_BACKDROP = "SET_BACKDROP";
 export const SET_PRODUCTS = "SET_PRODUCTS";
 export const SET_PRODUCT_IN_DRAWER = "SET_PRODUCT_IN_DRAWER";
 export const OPEN_DRAWER = "OPEN_DRAWER";
