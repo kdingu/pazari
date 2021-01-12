@@ -5,7 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsAsync } from "./store/actions/products/actions";
 import { fetchCartAsync } from "./store/actions/cart/actions";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Navbar, Products, Cart, Checkout, OrderSuccess } from "./components";
+import {
+  Navbar,
+  Footer,
+  Products,
+  Cart,
+  Checkout,
+  OrderSuccess,
+} from "./components";
 import store from "./store";
 import {
   Backdrop,
@@ -74,6 +81,8 @@ const App = () => {
             <OrderSuccess />
           </Route>
         </Switch>
+
+        <Footer />
       </Router>
     </ThemeProvider>
   );

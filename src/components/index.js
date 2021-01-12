@@ -5,3 +5,4 @@ export { default as Home } from "./Home/Home";
 export { default as Checkout } from "./Checkout/Checkout";
 export { default as OrderSuccess } from "./OrderSuccess/OrderSuccess";
 export { default as Hero } from "./Hero/Hero";
+export { default as Footer } from "./Footer/Footer";
