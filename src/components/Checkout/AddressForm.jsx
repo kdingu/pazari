@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   InputLabel,
   Select,
@@ -13,6 +13,8 @@ import { checkoutActions } from "../../store/actions";
 
 const AddressForm = ({ checkoutId, next }) => {
   const methods = useForm();
+
+  const [error, setError] = useState(false);
 
   const firstname = useSelector((state) => state.checkout.formData.firstname);
   const lastname = useSelector((state) => state.checkout.formData.lastname);
@@ -45,6 +47,14 @@ const AddressForm = ({ checkoutId, next }) => {
   let prevCountry;
   let prevSubdivision;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!!option) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+  }, [option]);
 
   useEffect(() => {
     prevCountry = country;
@@ -200,7 +210,7 @@ const AddressForm = ({ checkoutId, next }) => {
             </Grid>
 
             <Grid align="right" item xs={12} style={{ marginTop: 26 }}>
-              <Button type="submit" disableElevation>
+              <Button type="submit" disabled={error} disableElevation>
                 Vazhdo
               </Button>
             </Grid>
