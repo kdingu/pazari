@@ -59,7 +59,7 @@ export const setProductInDrawerById = (productId) => {
 
 export const fetchProductsAsync = () => {
   return async (dispatch) => {
-    const { data, meta } = await commerce.products.list({ limit: 5 });
+    const { data, meta } = await commerce.products.list();
     dispatch(setProducts({ data, meta }));
   };
 };
@@ -102,7 +102,7 @@ export const searchByCategoryId = (id) => {
 export const goToPage = (page) => {
   return async (dispatch) => {
     try {
-      const { data, meta } = await commerce.products.list({ limit: 5, page });
+      const { data, meta } = await commerce.products.list({ page });
       dispatch(setProducts({ data, meta }));
     } catch (error) {
       throw new Error("Error while fetching products page");
