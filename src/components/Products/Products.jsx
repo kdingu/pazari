@@ -10,9 +10,6 @@ import useStyles from "./styles";
 import { Pagination } from "@material-ui/lab";
 import { generalActions, productActions } from "../../store/actions";
 
-import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
-
 const Products = () => {
   const classes = useStyles();
 
