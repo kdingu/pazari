@@ -38,12 +38,24 @@ export default makeStyles((theme) => ({
     height: "50px",
   },
   thumbnail: {
+    position: "relative",
     width: "100px",
     height: "100px",
     border: "none",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "center center",
     margin: "5px",
+    "&.carousel__dot--selected": {
+      "&::before": {
+        content: "''",
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        backgroundColor: "rgba(255,255,255,0.4)",
+      },
+    },
   },
   thumbnailWrapper: {
     display: "flex",

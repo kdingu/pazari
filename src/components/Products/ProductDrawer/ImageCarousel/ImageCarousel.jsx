@@ -59,7 +59,7 @@ const ImageCarousel = ({ images = [temp, temp, temp] }) => {
             className={classes.thumbnail}
             slide={index}
             style={{ backgroundImage: `url(${url})` }}
-          ></Dot>
+          />
         ))}
       </div>
     </CarouselProvider>
