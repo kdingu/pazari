@@ -1,7 +1,22 @@
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Container, Grid, Typography, Button } from "@material-ui/core";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useStyles from "./style";
+
+const menuItems = [
+  {
+    title: "Pazari",
+    link: "/",
+  },
+  {
+    title: "Shporta",
+    link: "/cart",
+  },
+  {
+    title: "Login",
+    link: "/login",
+  },
+];
 
 const Footer = () => {
   const classes = useStyles();
@@ -10,10 +25,14 @@ const Footer = () => {
   return pathname !== "/checkout" ? (
     <Container maxWidth="xl" className={classes.main}>
       <Container className={classes.content}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography align="center">Image</Typography>
-          </Grid>
+        <Grid container className={classes.menu}>
+          {menuItems.map((item) => (
+            <Grid item align="center" xs={12} md={4} key={item.title}>
+              <Button component={Link} to={item.link} className={classes.item}>
+                {item.title}
+              </Button>
+            </Grid>
+          ))}
         </Grid>
       </Container>
       <div className={classes.signature}>

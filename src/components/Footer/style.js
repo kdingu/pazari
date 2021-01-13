@@ -8,14 +8,23 @@ export default makeStyles((theme) => ({
     boxShadow: "0px -10px 15px rgba(0,0,0,0.15)",
   },
   content: {
-    padding: "20px",
-    paddingTop: "100px",
-    paddingBottom: "100px",
+    // padding: "20px",
   },
   signature: {
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "10px",
-    borderTop: "1px solid rgba(0,0,0,1)",
+    // borderTop: "1px solid #000000a0",
+    backgroundColor: "#84DCF1",
+  },
+  menu: {
+    maxWidth: 500,
+    margin: "auto",
+  },
+  item: {
+    color: theme.palette.primary.contrastText,
+    minHeight: "70px",
+    width: "100%",
+    borderRadius: 0,
   },
 }));
