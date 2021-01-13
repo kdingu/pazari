@@ -15,7 +15,7 @@ const initialState = {
   cart: {
     line_items: [],
     id: "",
-    total_items: 0,
+    total_items: "initial",
     total_unique_items: 0,
     subtotal: {},
   },
@@ -44,6 +44,7 @@ const initialState = {
     },
   },
   order: "",
+  errorsCount: 0,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

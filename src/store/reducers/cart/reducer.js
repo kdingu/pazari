@@ -2,7 +2,7 @@
 import * as C from "../../constant";
 
 const initialState = {
-  line_items: [],
+  line_items: "initial",
   id: "cart_J5a96O62PE0r75",
   total_items: 0,
   total_unique_items: 0,

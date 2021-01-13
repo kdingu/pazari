@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import { useSelector } from "react-redux";
 import { Alert } from "@material-ui/lab";
 import { Slide } from "@material-ui/core";
 
-var prevItems = 0;
-var prevErrors;
+// var prevItems;
+// var prevErrors;
 
 const slide = (props) => <Slide {...props} direction="up" />;
 
@@ -18,33 +18,44 @@ const MySnackbar = () => {
   const totalItems = useSelector((state) => state.cart.total_items);
   const errorsCount = useSelector((state) => state.errorsCount);
 
+  const prevItems = useRef(totalItems);
+  const prevErrors = useRef();
+
   const showSnackbar = (message) => {
     setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
   };
 
   useEffect(() => {
-    if (totalItems && !prevItems) prevItems = totalItems;
-    if (errorsCount && !prevErrors) prevErrors = errorsCount;
+    // if (totalItems && !prevItems.current) prevItems.current = totalItems;
+    if (errorsCount && !prevErrors.current) prevErrors.current = errorsCount;
   }, []);
 
   // watch changes in cart total items
   useEffect(() => {
+    console.log(totalItems);
+    console.log(prevItems.current);
+
     if (
-      (totalItems && prevItems !== totalItems) ||
-      (!totalItems && prevItems)
+      (totalItems &&
+        prevItems.current !== totalItems &&
+        totalItems !== "initial" &&
+        prevItems.current !== "initial") ||
+      (!totalItems && prevItems.current && prevItems.current !== "initial")
     ) {
       // show success
+      prevItems.current = totalItems;
       setAlertType("success");
       showSnackbar("SHPORTA U PËRDITËSUA");
-      prevItems = totalItems;
     }
+
+    if (prevItems.current === "initial") prevItems.current = totalItems;
   }, [totalItems]);
 
   // watch changes in error counter
   useEffect(() => {
     if (
-      (errorsCount && prevErrors !== errorsCount) ||
-      (!errorsCount && prevErrors)
+      (errorsCount && prevErrors.current !== errorsCount) ||
+      (!errorsCount && prevErrors.current)
     ) {
       // show error
       setAlertType("error");

@@ -31,7 +31,10 @@ const PopoverCart = () => {
         variant="contained"
         onClick={handleClick}
       >
-        <Badge badgeContent={badge} color="error">
+        <Badge
+          badgeContent={typeof badge === "number" ? badge : 0}
+          color="error"
+        >
           <ShoppingCart />
         </Badge>
       </IconButton>

@@ -11,11 +11,11 @@ import errorsCounterReducer from "./errorsCounter/reducer";
 import backdropReducer from "./backdrop/reducer";
 
 export default combineReducers({
+  backdrop: backdropReducer,
   products: productsReducer,
   categories: categoriesReducer,
   cart: cartReducer,
   checkout: checkoutReducer,
   order: orderReducer,
   errorsCount: errorsCounterReducer,
-  backdrop: backdropReducer,
 });
