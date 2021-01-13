@@ -9,13 +9,16 @@ const Footer = () => {
 
   return pathname !== "/checkout" ? (
     <Container maxWidth="xl" className={classes.main}>
-      <Container>
+      <Container className={classes.content}>
         <Grid container>
           <Grid item xs={12}>
-            <Typography>Footer</Typography>
+            <Typography align="center">Image</Typography>
           </Grid>
         </Grid>
       </Container>
+      <div className={classes.signature}>
+        <Container>© Pazari - {new Date().getFullYear()}</Container>
+      </div>
     </Container>
   ) : null;
 };
