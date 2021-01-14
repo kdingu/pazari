@@ -32,9 +32,6 @@ const MySnackbar = () => {
 
   // watch changes in cart total items
   useEffect(() => {
-    console.log(totalItems);
-    console.log(prevItems.current);
-
     if (
       (totalItems &&
         prevItems.current !== totalItems &&
