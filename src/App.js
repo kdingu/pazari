@@ -12,6 +12,7 @@ import {
   Cart,
   Checkout,
   OrderSuccess,
+  Support,
 } from "./components";
 import store from "./store";
 import {
@@ -75,6 +76,9 @@ const App = () => {
           </Route>
           <Route exact path="/order-success">
             <OrderSuccess />
+          </Route>
+          <Route exact path="/support">
+            <Support />
           </Route>
         </Switch>
 

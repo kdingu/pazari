@@ -13,8 +13,8 @@ const menuItems = [
     link: "/cart",
   },
   {
-    title: "Login",
-    link: "/login",
+    title: "Suporti",
+    link: "/support",
   },
 ];
 
@@ -23,7 +23,7 @@ const Footer = () => {
   const { pathname } = useLocation();
 
   return pathname !== "/checkout" ? (
-    <Container maxWidth="xl" className={classes.main}>
+    <Container id="footer" maxWidth="xl" className={classes.main}>
       <Container className={classes.content}>
         <Grid container className={classes.menu}>
           {menuItems.map((item) => (
