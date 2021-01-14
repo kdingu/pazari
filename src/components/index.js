@@ -6,4 +6,5 @@ export { default as Checkout } from "./Checkout/Checkout";
 export { default as OrderSuccess } from "./OrderSuccess/OrderSuccess";
 export { default as Hero } from "./Hero/Hero";
 export { default as Support } from "./Support/MyOrders/MyOrders";
+export { default as CustomerOrders } from "./Support/CustomerOrders/CustomerOrders";
 export { default as Footer } from "./Footer/Footer";
