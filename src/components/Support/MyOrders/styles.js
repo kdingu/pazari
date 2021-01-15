@@ -7,6 +7,7 @@ export default makeStyles((theme) => ({
     padding: "20px",
     minHeight: "100vh",
     display: "flex",
+    flexFlow: "column",
     justifyContent: "center",
     alignItems: "center",
     position: "relative",

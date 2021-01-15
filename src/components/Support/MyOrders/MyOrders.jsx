@@ -41,9 +41,21 @@ const MyOrders = () => {
               Ju dërguam një email tek "{clientEmail}". Hapeni emailin dhe
               klikoni tek "Login". Faleminderit!
             </Typography>
+            <Typography variant="caption" gutterBottom>
+              Nëse nuk ju ka ardhur një email, ju nuk jeni klient i mëparshëm
+              dhe emaili juaj nuk egziston në sistem.
+            </Typography>
           </Grid>
         </Grid>
       </Paper>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setPhase(1)}
+        style={{ marginTop: "16px" }}
+      >
+        Kthehu
+      </Button>
     </div>
   );
 
