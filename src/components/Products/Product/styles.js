@@ -6,9 +6,16 @@ export default makeStyles((theme) => ({
     "&:hover": {
       boxShadow: "0 0 15px -5px rgba(0,0,0,0.3)",
     },
+    "& button": {
+      "& div:first-of-type": {
+        overflow: "hidden",
+      },
+    },
   },
   media: {
-    height: "200px",
+    minHeight: "200px",
+    top: "50% !important",
+    transform: "translateY(-50%)",
   },
   productName: {
     whiteSpace: "nowrap",

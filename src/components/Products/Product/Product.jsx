@@ -11,6 +11,7 @@ import { noImageUrl } from "../../../constant";
 import loadingComponentImage from "../../../assests/placeholder-transparent.png";
 import { useDispatch } from "react-redux";
 import { productActions } from "../../../store/actions";
+import Image from "material-ui-image";
 
 const Product = ({
   product,
@@ -66,7 +67,7 @@ const Product = ({
               : setProductInDrawerAndOpenDrawer
           }
         >
-          <CardMedia
+          {/* <CardMedia
             className={classes.media}
             image={
               product.media.type === "image" && product.media.source
@@ -74,6 +75,16 @@ const Product = ({
                 : noImageUrl
             }
             title={product.name}
+          /> */}
+          <Image
+            className={classes.media}
+            aspectRatio={4 / 2.5}
+            cover
+            src={
+              product.media.type === "image" && product.media.source
+                ? product.media.source
+                : noImageUrl
+            }
           />
           <CardContent>
             <Typography
