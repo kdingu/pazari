@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import PopoverCart from "./PopoverCart/PopoverCart";
 import logo from "../../assests/pazari-logo.png";
 import useStyles from "./styles";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -25,9 +26,15 @@ const Navbar = () => {
             Pazari
           </Typography>
           <div className={classes.grow}></div>
-          <div className={classes.button}>
-            <PopoverCart />
-          </div>
+          <Button
+            variant="outlined"
+            component={Link}
+            to="/support"
+            style={{ marginRight: "16px" }}
+          >
+            Historiku i blerjeve
+          </Button>
+          <PopoverCart />
         </Toolbar>
       </AppBar>
     </>
