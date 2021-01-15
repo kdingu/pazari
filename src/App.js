@@ -1,6 +1,6 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "fontsource-roboto";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsAsync } from "./store/actions/products/actions";
 import { fetchCartAsync } from "./store/actions/cart/actions";
@@ -17,26 +17,24 @@ import {
   CustomerOrders,
   Backdrop,
 } from "./components";
-import store from "./store";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./lib/MuiTheme/theme";
-import { categoryActions } from "./store/actions";
+import { categoryActions, generalActions } from "./store/actions";
 import Snackbar from "./components/Snackbar";
 
 const App = () => {
   const dispatch = useDispatch();
+  const customer = JSON.parse(localStorage.getItem("user"));
 
-  React.useEffect(() => {
-    console.log("app mounted");
-    const unsubStore = store.subscribe(() =>
-      console.log("App.js - redux didUpdate")
-    );
-
+  useEffect(() => {
     dispatch(categoryActions.fetchCategories());
     dispatch(fetchProductsAsync());
     dispatch(fetchCartAsync());
 
-    return unsubStore;
+    // check localStorage for customer data and if exists set user to redux store
+    if (customer?.jwt) {
+      dispatch(generalActions.setCustomerId(customer.customer_id));
+    }
   }, []);
 
   return (

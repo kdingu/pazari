@@ -1,6 +1,6 @@
 import { Button, Container, Paper, Typography } from "@material-ui/core";
 import Hero from "../../Hero/Hero";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import useStyles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { UserServices } from "../../../services";
@@ -13,6 +13,8 @@ const CustomerOrders = () => {
   const orders = useSelector((state) => state.customer.orders);
   const dispatch = useDispatch();
 
+  const prevCustomerId = useRef();
+
   useEffect(() => {
     document.title = "Pazari - Blerjet e mia";
 
@@ -22,14 +24,15 @@ const CustomerOrders = () => {
         const res = await UserServices.listOrdersForCustomer(customerId);
         if (res.status === 200) {
           dispatch(generalActions.setCustomerOrders(res.data));
+          prevCustomerId.current = customerId;
         }
         dispatch(generalActions.setBackdrop(false));
       } catch (error) {
         console.log(error);
       }
     };
-    getOrders();
-  }, []);
+    if (customerId && customerId !== prevCustomerId.current) getOrders();
+  }, [customerId]);
 
   const NoOrders = () => (
     <Paper variant="outlined" className={classes.noOrdersPaper}>
