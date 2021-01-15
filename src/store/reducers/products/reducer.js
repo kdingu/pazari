@@ -37,24 +37,6 @@ export default (state = initialState, { type, payload }) => {
         searchString: payload.searchString,
       };
 
-    case C.OPEN_DRAWER:
-      return {
-        ...cloneDeep(state),
-        productDrawer: true,
-      };
-
-    case C.CLOSE_DRAWER:
-      return {
-        ...cloneDeep(state),
-        productDrawer: false,
-      };
-
-    case C.SET_PRODUCT_IN_DRAWER:
-      return {
-        ...cloneDeep(state),
-        productInDrawer: payload.product,
-      };
-
     default:
       return state;
   }

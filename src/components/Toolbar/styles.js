@@ -5,7 +5,8 @@ export default makeStyles((theme) => ({
     height: "60px",
     display: "flex",
     alignItems: "stretch",
-    backgroundColor: theme.palette.primary.main,
+    // backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.light,
     boxShadow: "0px 10px 15px rgba(0,0,0,0.2)",
     [theme.breakpoints.down("md")]: {
       height: "max-content",
@@ -18,6 +19,6 @@ export default makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     borderRadius: 0,
-    color: theme.palette.primary.contrastText,
+    color: "#0f0f0f",
   },
 }));

@@ -5,7 +5,7 @@ import {
   Typography,
   CardContent,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
 import loadingComponentImage from "../../../assests/placeholder-transparent.png";
@@ -27,6 +27,8 @@ const Product = ({
     dispatch(productActions.setProductInDrawer(product));
     dispatch(productActions.openDrawer());
   };
+
+  useEffect(() => console.log("product did update"));
 
   if (dummy) {
     return (
@@ -79,7 +81,7 @@ const Product = ({
           <Image
             className={classes.media}
             aspectRatio={4 / 2.5}
-            cover
+            cover={true}
             src={
               product.media.type === "image" && product.media.source
                 ? product.media.source

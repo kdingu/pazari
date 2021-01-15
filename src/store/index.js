@@ -8,7 +8,9 @@ const initialState = {
     data: [],
     meta: {},
     searchString: "",
-    productDrawer: false,
+  },
+  drawer: {
+    open: false,
     productInDrawer: {},
   },
   categories: [],

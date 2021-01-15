@@ -14,28 +14,15 @@ import {
   OrderSuccess,
   Support,
   CustomerOrders,
+  Backdrop,
 } from "./components";
 import store from "./store";
-import {
-  Backdrop,
-  CircularProgress,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import theme from "./lib/MuiTheme/theme";
-import { categoryActions, generalActions } from "./store/actions";
+import { categoryActions } from "./store/actions";
 import Snackbar from "./components/Snackbar";
 
-const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1000,
-    color: "#fff",
-  },
-}));
-
 const App = () => {
-  const classes = useStyles();
-  const open = useSelector((state) => state.backdrop);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -53,13 +40,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Backdrop
-        className={classes.backdrop}
-        open={open}
-        onClick={() => dispatch(generalActions.setBackdrop(false))}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      {/* backdrop */}
+      <Backdrop />
       <Router>
         <CssBaseline />
         <Navbar />

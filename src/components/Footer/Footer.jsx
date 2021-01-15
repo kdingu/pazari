@@ -24,7 +24,7 @@ const Footer = () => {
 
   return pathname !== "/checkout" ? (
     <Container id="footer" maxWidth="xl" className={classes.main}>
-      <Container className={classes.content}>
+      {/* <Container className={classes.content}>
         <Grid container className={classes.menu}>
           {menuItems.map((item) => (
             <Grid item align="center" xs={12} md={4} key={item.title}>
@@ -34,7 +34,7 @@ const Footer = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Container> */}
       <div className={classes.signature}>
         <Container>© Pazari - {new Date().getFullYear()}</Container>
       </div>

@@ -35,14 +35,12 @@ const ProductDrawer = () => {
   const form = useRef();
 
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.products.productInDrawer);
-  const open = useSelector((state) => state.products.productDrawer);
+  const product = useSelector((state) => state.drawer.productInDrawer);
+  const open = useSelector((state) => state.drawer.open);
   const cart = useSelector((state) => state.cart);
 
   const [state, setState] = useState({});
   const [selectedOptionsPrice, setSelectedOptionsPrice] = useState(0);
-  const [disabled, setDisabled] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false);
 
   useEffect(() => {
     if (selectedOptionsPrice !== 0) setSelectedOptionsPrice(0);

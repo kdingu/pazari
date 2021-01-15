@@ -13,7 +13,7 @@ const theme = createMuiTheme({
   },
   palette: {
     common: { black: "#000", white: "#fff" },
-    background: { paper: "#fff", default: "#fafafa" },
+    background: { paper: "#fff", default: "#fafafa", light: "#84DCF1" },
     primary: {
       light: "rgba(132, 241, 241, 1)",
       dark: "rgba(62, 214, 218, 1)",

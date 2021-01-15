@@ -3,6 +3,7 @@
 import { combineReducers } from "redux";
 
 import productsReducer from "./products/reducer";
+import productDrawerReducer from "./productDrawer/reducer";
 import categoriesReducer from "./categories/reducer";
 import cartReducer from "./cart/reducer";
 import checkoutReducer from "./checkout/reducer";
@@ -13,6 +14,7 @@ import backdropReducer from "./backdrop/reducer";
 export default combineReducers({
   backdrop: backdropReducer,
   products: productsReducer,
+  drawer: productDrawerReducer,
   categories: categoriesReducer,
   cart: cartReducer,
   checkout: checkoutReducer,
