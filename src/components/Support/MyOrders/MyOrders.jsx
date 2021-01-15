@@ -18,6 +18,10 @@ const MyOrders = () => {
   const classes = useStyles();
   const { handleSubmit, control, errors } = useForm();
 
+  useEffect(() => {
+    document.title = "Pazari - Kërko Blerjet";
+  }, []);
+
   const onSubmit = async (data) => {
     try {
       dispatch(generalActions.setBackdrop(true));
@@ -34,7 +38,7 @@ const MyOrders = () => {
 
   const EmailSent = () => (
     <div className={classes.main}>
-      <Paper className={classes.paper}>
+      <Paper variant="outlined" className={classes.paper}>
         <Grid container spacing={4}>
           <Grid item xs={12} align="center">
             <Typography variant="h6" component="h1" gutterBottom>
@@ -52,7 +56,7 @@ const MyOrders = () => {
         variant="contained"
         color="primary"
         onClick={() => setPhase(1)}
-        style={{ marginTop: "16px" }}
+        style={{ marginTop: 16 }}
       >
         Kthehu
       </Button>
@@ -60,9 +64,9 @@ const MyOrders = () => {
   );
 
   return phase === 1 ? (
-    <div className={classes.main}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Paper className={classes.paper}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className={classes.main}>
+        <Paper variant="outlined" className={classes.paper}>
           <Grid container spacing={4}>
             <Grid item xs={12} align="center">
               <Typography variant="h4" component="h1" gutterBottom>
@@ -94,7 +98,7 @@ const MyOrders = () => {
                 </Typography>
               )}
             </Grid>
-            <Grid item xs={12} align="center">
+            {/* <Grid item xs={12} align="center">
               <Button
                 color="secondary"
                 variant="contained"
@@ -103,11 +107,20 @@ const MyOrders = () => {
               >
                 Kërko Porositë
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Paper>
-      </form>
-    </div>
+        <Button
+          color="secondary"
+          variant="contained"
+          disableElevation
+          type="submit"
+          style={{ marginTop: 16 }}
+        >
+          Kërko Porositë
+        </Button>
+      </div>
+    </form>
   ) : phase === 2 ? (
     <EmailSent />
   ) : null;

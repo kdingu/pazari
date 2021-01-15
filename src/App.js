@@ -13,6 +13,7 @@ import {
   Checkout,
   OrderSuccess,
   Support,
+  CustomerAuthentication,
   CustomerOrders,
   Backdrop,
 } from "./components";
@@ -40,7 +41,6 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* backdrop */}
       <Backdrop />
       <Router>
         <CssBaseline />
@@ -62,6 +62,9 @@ const App = () => {
           </Route>
           <Route exact path="/support">
             <Support />
+          </Route>
+          <Route exact path="/customer_authentication">
+            <CustomerAuthentication />
           </Route>
           <Route exact path="/customer_orders">
             <CustomerOrders />

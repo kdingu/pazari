@@ -1,5 +1,5 @@
 import { Paper, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useStyles from "./styles";
 import imageUrl from "../../assests/crayon-1779.png";
@@ -8,6 +8,10 @@ const OrderSuccess = () => {
   const classes = useStyles();
 
   const orderRef = useSelector((state) => state.order);
+
+  useEffect(() => {
+    document.title = "Pazari - Faleminderit";
+  }, []);
 
   return (
     <div className={classes.main}>

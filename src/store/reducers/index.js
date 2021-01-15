@@ -10,6 +10,7 @@ import checkoutReducer from "./checkout/reducer";
 import orderReducer from "./order/reducer";
 import errorsCounterReducer from "./errorsCounter/reducer";
 import backdropReducer from "./backdrop/reducer";
+import customerReducer from "./customer/reducer";
 
 export default combineReducers({
   backdrop: backdropReducer,
@@ -20,4 +21,5 @@ export default combineReducers({
   checkout: checkoutReducer,
   order: orderReducer,
   errorsCount: errorsCounterReducer,
+  customer: customerReducer,
 });

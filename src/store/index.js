@@ -47,6 +47,10 @@ const initialState = {
   },
   order: "",
   errorsCount: 0,
+  customer: {
+    id: 0,
+    orders: {},
+  },
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

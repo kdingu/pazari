@@ -28,8 +28,6 @@ const Product = ({
     dispatch(productActions.openDrawer());
   };
 
-  useEffect(() => console.log("product did update"));
-
   if (dummy) {
     return (
       <div style={{ opacity: "0.5" }}>
@@ -81,7 +79,7 @@ const Product = ({
           <Image
             className={classes.media}
             aspectRatio={4 / 2.5}
-            cover={true}
+            cover={true.toString()}
             src={
               product.media.type === "image" && product.media.source
                 ? product.media.source

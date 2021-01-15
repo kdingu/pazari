@@ -36,6 +36,7 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+    document.title = "Pazari - Arka";
     setActiveStep(0);
 
     generateTokenAndGetCountries();

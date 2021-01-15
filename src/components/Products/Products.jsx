@@ -31,8 +31,8 @@ const Products = () => {
   };
 
   useEffect(() => {
-    console.log("products did update");
-  });
+    document.title = "Pazari";
+  }, []);
 
   return (
     <div className={classes.root}>

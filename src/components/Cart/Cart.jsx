@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem/CartItem";
 import { Hero } from "../";
 import useStyles from "./styles";
@@ -20,6 +20,10 @@ const Cart = () => {
   };
 
   const classes = useStyles();
+
+  useEffect(() => {
+    document.title = "Pazari - Shporta";
+  }, []);
 
   const EmptyCart = () => (
     <Typography
