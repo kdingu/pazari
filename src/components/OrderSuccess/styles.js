@@ -2,19 +2,20 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
+  mainWrapper: {
+    position: "relative",
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   main: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
+    position: "relative",
+    textAlign: "center",
   },
   paper: {
     padding: "20px",
-    // width: "100%",
     maxWidth: "450px",
-    display: "flex",
-    flexFlow: "column",
-    alignItems: "center",
     border: "1px solid #333",
   },
   orderRef: {

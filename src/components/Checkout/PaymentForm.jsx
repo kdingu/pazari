@@ -148,7 +148,11 @@ const PaymentForm = ({ back }) => {
 
     let items = {};
     checkout.checkoutToken.live.line_items.map((item) => {
-      items[item.id] = { quantity: item.quantity, variants: {} };
+      const variants = {};
+      for (const variant of item.variants) {
+        variants[variant.variant_id] = variant.option_id;
+      }
+      items[item.id] = { quantity: item.quantity, variants };
     });
 
     const orderData = {
