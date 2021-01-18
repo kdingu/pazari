@@ -34,8 +34,8 @@ const Navbar = () => {
             to="/support"
             style={{ marginRight: "16px" }}
           >
-            {customer.id
-              ? `Blerjet e mia - ${customer.orders?.data[0].customer.firstname} ${customer.orders?.data[0].customer.lastname}`
+            {customer.id && customer.orders?.data
+              ? `Blerjet e mia - ${customer.orders.data[0].customer.firstname} ${customer.orders.data[0].customer.lastname}`
               : "Suporti i blerjeve"}
           </Button>
           <PopoverCart />
