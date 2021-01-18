@@ -1,10 +1,4 @@
-import {
-  Button,
-  Container,
-  Paper,
-  Typography,
-  withStyles,
-} from "@material-ui/core";
+import { Button, Container, Paper, Typography } from "@material-ui/core";
 import Hero from "../../Hero/Hero";
 import React, { useEffect, useRef } from "react";
 import useStyles from "./styles";
@@ -43,6 +37,12 @@ const CustomerOrders = () => {
 
   const logout = () => {
     console.log("loggingout");
+    // delete user from localStorage
+    localStorage.removeItem("user");
+
+    // delete customer/user from redux
+    dispatch(generalActions.setCustomerId(""));
+    dispatch(generalActions.setCustomerOrders({}));
   };
 
   const NoOrders = () => (
@@ -78,6 +78,8 @@ const CustomerOrders = () => {
           <div style={{ width: "100%" }}>
             <OrdersAccordion orders={orders.data} />
             <Button
+              component={Link}
+              to="/"
               variant="contained"
               color="primary"
               style={{ marginTop: 36 }}
