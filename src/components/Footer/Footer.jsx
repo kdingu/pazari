@@ -10,7 +10,7 @@ const Footer = () => {
   return pathname !== "/checkout" ? (
     <Container id="footer" maxWidth="xl" className={classes.main}>
       <div className={classes.signature}>
-        <Container>© Pazari - {new Date().getFullYear()}</Container>
+        <Container>© Pazari - 2021</Container>
       </div>
     </Container>
   ) : null;

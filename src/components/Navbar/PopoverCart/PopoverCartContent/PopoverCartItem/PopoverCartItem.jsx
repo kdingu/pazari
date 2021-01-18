@@ -18,9 +18,7 @@ const PopoverCartItem = ({ item }) => {
 
   const handleRemoveProductFromCart = (id) => {
     setDisabled(true);
-    dispatch(cartActions.removeProductFromCartAsync(id)).then(() => {
-      // setDisabled(false);
-    });
+    dispatch(cartActions.removeProductFromCartAsync(id));
   };
 
   return (

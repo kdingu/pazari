@@ -4,9 +4,6 @@ import { useSelector } from "react-redux";
 import { Alert } from "@material-ui/lab";
 import { Slide } from "@material-ui/core";
 
-// var prevItems;
-// var prevErrors;
-
 const slide = (props) => <Slide {...props} direction="up" />;
 
 const MySnackbar = () => {
@@ -26,7 +23,6 @@ const MySnackbar = () => {
   };
 
   useEffect(() => {
-    // if (totalItems && !prevItems.current) prevItems.current = totalItems;
     if (errorsCount && !prevErrors.current) prevErrors.current = errorsCount;
   }, []);
 

@@ -94,32 +94,26 @@ const Search = () => {
   const filter = useSelector((state) => state.products.searchString);
 
   const handleSearch = () => {
-    // setSearching(true);
     dispatch(generalActions.setBackdrop(true));
     dispatch(productActions.search(searchString))
       .then(() => {
-        // setSearching(false);
         dispatch(generalActions.setBackdrop(false));
       })
       .catch((error) => {
         console.log(error);
-        // setSearching(false);
         dispatch(generalActions.setBackdrop(false));
         setNoSearchResults(true);
       });
   };
 
   const cleanSearch = () => {
-    // setSearching(true);
     dispatch(generalActions.setBackdrop(true));
     dispatch(productActions.search(""))
       .then(() => {
-        // setSearching(false);
         dispatch(generalActions.setBackdrop(false));
         setSearchString("");
       })
       .catch(() => {
-        // setSearching(false);
         dispatch(generalActions.setBackdrop(false));
       });
   };

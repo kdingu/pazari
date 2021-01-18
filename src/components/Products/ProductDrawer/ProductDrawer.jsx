@@ -89,7 +89,7 @@ const ProductDrawer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = [];
-    // extraxt form data
+    // extract form data
     for (const sth of e.target) {
       if (sth.type === "text") {
         data.push({ variant: sth.name, option: sth.value });
@@ -159,11 +159,6 @@ const ProductDrawer = () => {
         role="presentation"
         style={{ maxHeight: "100vh" }}
       >
-        {/* {showSpinner ? (
-          <div className={classes.loader}>
-            <CircularProgress />
-          </div>
-        ) : null} */}
         <form ref={form} onSubmit={handleSubmit}>
           <Grid
             container

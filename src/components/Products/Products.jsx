@@ -26,6 +26,7 @@ const Products = () => {
         dispatch(generalActions.setBackdrop(false));
       })
       .catch((error) => {
+        console.log(error);
         dispatch(generalActions.setBackdrop(false));
       });
   };

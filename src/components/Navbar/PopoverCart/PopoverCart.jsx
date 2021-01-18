@@ -3,7 +3,6 @@ import { ShoppingCart } from "@material-ui/icons";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import PopoverCartContent from "./PopoverCartContent/PopoverCartContent";
-import useStyles from "./styles";
 
 const PopoverCart = () => {
   const [anchorEl, setAnchorEl] = useState(null);

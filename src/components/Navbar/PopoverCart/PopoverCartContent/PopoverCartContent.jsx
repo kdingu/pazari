@@ -7,10 +7,7 @@ import { useSelector } from "react-redux";
 import { Typography, Button, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const PopoverCartContent = ({
-  handleRemoveProductFromCart,
-  closePopoverCart,
-}) => {
+const PopoverCartContent = ({ closePopoverCart }) => {
   const cart = useSelector((state) => state.cart);
   const classes = useStyles();
   return (
