@@ -5,9 +5,11 @@ import PopoverCart from "./PopoverCart/PopoverCart";
 import logo from "../../assests/pazari-logo.png";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const classes = useStyles();
+  const customer = useSelector((state) => state.customer);
 
   const { pathname } = useLocation();
 
@@ -32,7 +34,9 @@ const Navbar = () => {
             to="/support"
             style={{ marginRight: "16px" }}
           >
-            Historiku i blerjeve
+            {customer.id
+              ? `Blerjet e mia - ${customer.orders?.data[0].customer.firstname} ${customer.orders?.data[0].customer.lastname}`
+              : "Suporti i blerjeve"}
           </Button>
           <PopoverCart />
         </Toolbar>
