@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const ISSUE_TOKEN_URL = "https://api.chec.io/v1/customers/email-token";
-// const BASE_URL = "https://pazari.netlify.app/customer_authentication?token={token}";
-const BASE_URL = "http://localhost:3000/customer_authentication?token={token}";
+const BASE_URL =
+  "https://pazari.netlify.app/customer_authentication?token={token}";
+// const BASE_URL = "http://localhost:3000/customer_authentication?token={token}";
 
 const issueCustomerToken = async (email) => {
   const data = {
