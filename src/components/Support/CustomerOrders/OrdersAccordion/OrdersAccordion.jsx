@@ -4,6 +4,7 @@ import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import { Container, Grid, Typography, withStyles } from "@material-ui/core";
 import useStyles from "./styles";
+import sortBy from "lodash.sortby";
 
 const Accordion = withStyles({
   root: {
@@ -58,6 +59,8 @@ const OrdersAccordion = ({ orders = [{}, {}] }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState("");
 
+  const sortedOrders = sortBy(orders, ["created"]).reverse();
+
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -78,8 +81,8 @@ const OrdersAccordion = ({ orders = [{}, {}] }) => {
       </Grid>
       {/* list */}
       <div className={classes.listContainer}>
-        {orders.length > 0 &&
-          orders.map((order) => {
+        {sortedOrders.length > 0 &&
+          sortedOrders.map((order) => {
             let orderDate = new Date(order.created * 1000);
             orderDate = `${orderDate.getDate()}/${
               orderDate.getMonth() + 1
