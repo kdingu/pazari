@@ -1,4 +1,10 @@
-import { Button, Container, Paper, Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Paper,
+  Typography,
+  withStyles,
+} from "@material-ui/core";
 import Hero from "../../Hero/Hero";
 import React, { useEffect, useRef } from "react";
 import useStyles from "./styles";
@@ -6,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserServices } from "../../../services";
 import { generalActions } from "../../../store/actions";
 import { Link } from "react-router-dom";
+import OrdersAccordion from "./OrdersAccordion/OrdersAccordion";
 
 const CustomerOrders = () => {
   const classes = useStyles();
@@ -50,8 +57,6 @@ const CustomerOrders = () => {
     </Paper>
   );
 
-  const Orders = () => <></>;
-
   return (
     <>
       {orders.meta?.pagination?.total ? (
@@ -65,7 +70,11 @@ const CustomerOrders = () => {
           orders.meta?.pagination?.total ? classes.main : classes.mainMaxxedOut
         }
       >
-        {orders.meta?.pagination?.total ? <Orders /> : <NoOrders />}
+        {orders.meta?.pagination?.total ? (
+          <OrdersAccordion orders={orders.data} />
+        ) : (
+          <NoOrders />
+        )}
       </Container>
     </>
   );

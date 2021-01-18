@@ -2,8 +2,8 @@ import { Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
 import { useForm, Controller } from "react-hook-form";
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Redirect, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import issueCustomerToken from "../../../services/issueCustomerToken";
 import { generalActions } from "../../../store/actions";
 
@@ -15,11 +15,15 @@ const MyOrders = () => {
 
   const dispatch = useDispatch();
 
+  const customer = useSelector((state) => state.customer);
+  const customerAndData =
+    customer.id && customer.orders.meta?.pagination?.total;
+
   const classes = useStyles();
   const { handleSubmit, control, errors } = useForm();
 
   useEffect(() => {
-    document.title = "Pazari - Kërko Blerjet";
+    document.title = "Pazari - Login";
   }, []);
 
   const onSubmit = async (data) => {
@@ -63,18 +67,24 @@ const MyOrders = () => {
     </div>
   );
 
+  if (customerAndData) {
+    return <Redirect to="/customer_orders" />;
+  }
+
   return phase === 1 ? (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={classes.main}>
         <Paper variant="outlined" className={classes.paper}>
-          <Grid container spacing={4}>
+          <Grid container spacing={1}>
             <Grid item xs={12} align="center">
               <Typography variant="h4" component="h1" gutterBottom>
                 Shiko porositë e mëparme
               </Typography>
               <Typography variant="body1" gutterBottom>
                 Nëse keni bërë blerje më parë, mund të kontrolloni porositë
-                tuaja duke vendosur mëposhtë Emailin të cilin keni përdorur.
+                tuaja duke vendosur mëposhtë Emailin të cilin keni përdorur, dhe
+                një email do t'ju vijë për tu autentikuar. Më pas mund të
+                shikoni historikun e blerjeve tuaja.
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -98,16 +108,6 @@ const MyOrders = () => {
                 </Typography>
               )}
             </Grid>
-            {/* <Grid item xs={12} align="center">
-              <Button
-                color="secondary"
-                variant="contained"
-                disableElevation
-                type="submit"
-              >
-                Kërko Porositë
-              </Button>
-            </Grid> */}
           </Grid>
         </Paper>
         <Button
