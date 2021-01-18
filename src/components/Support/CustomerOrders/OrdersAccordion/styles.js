@@ -1,8 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
+import bg from "../../../../assests/pazari-bg.svg";
 
 export default makeStyles((theme) => ({
   headingsContainer: {
-    // display: "flex",
+    marginTop: 26,
+    boxShadow: "0 5px 10px rgba(0,0,0,0.25)",
     border: "1px solid rgba(0, 0, 0, .125)",
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
@@ -11,6 +13,16 @@ export default makeStyles((theme) => ({
     minHeight: 56,
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  listContainer: {
+    boxShadow: "0 5px 10px rgba(0,0,0,0.25)",
+    border: `1px solid ${theme.palette.primary.main}`,
+    backgroundColor: theme.palette.background.default,
+    backgroundImage: `url(${bg})`,
+    backgroundPosition: "center",
+    backgroundSize: "300%",
+    height: "600px",
+    overflow: "scroll",
   },
   detailsGrid: {
     border: "1px solid rgba(0, 0, 0, .125)",

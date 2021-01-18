@@ -7,7 +7,6 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
     "&::before": {
       content: "''",
       position: "absolute",
@@ -15,9 +14,9 @@ export default makeStyles((theme) => ({
       height: "100%",
       top: 0,
       left: 0,
-      backgroundImage: `url(${bg})`,
-      backgroundPosition: "center center",
-      backgroundSize: "cover",
+      // backgroundImage: `url(${bg})`,
+      // backgroundPosition: "center center",
+      // backgroundSize: "cover",
       opacity: "0.3",
       zIndex: "-1",
     },
@@ -26,7 +25,6 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
     height: "100vh",
     "&::before": {
       content: "''",

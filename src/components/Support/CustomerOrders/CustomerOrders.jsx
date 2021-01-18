@@ -41,6 +41,10 @@ const CustomerOrders = () => {
     if (customerId && customerId !== prevCustomerId.current) getOrders();
   }, [customerId]);
 
+  const logout = () => {
+    console.log("loggingout");
+  };
+
   const NoOrders = () => (
     <Paper variant="outlined" className={classes.noOrdersPaper}>
       <Typography>Ju nuk keni asnjë porosi.</Typography>
@@ -71,7 +75,17 @@ const CustomerOrders = () => {
         }
       >
         {orders.meta?.pagination?.total ? (
-          <OrdersAccordion orders={orders.data} />
+          <div style={{ width: "100%" }}>
+            <OrdersAccordion orders={orders.data} />
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginTop: 36 }}
+              onClick={logout}
+            >
+              Dil nga logaria
+            </Button>
+          </div>
         ) : (
           <NoOrders />
         )}
