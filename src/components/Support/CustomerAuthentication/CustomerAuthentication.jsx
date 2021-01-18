@@ -1,5 +1,4 @@
-import { Container } from "@material-ui/core";
-import Hero from "../../Hero/Hero";
+import { Container, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import queryString from "query-string";
 import { useLocation, Redirect } from "react-router-dom";
@@ -48,7 +47,7 @@ const CustomerAuthentication = () => {
   ) : (
     <>
       <Container className={classes.main}>
-        <div>{message}</div>
+        <Typography variant="h4">{message}</Typography>
       </Container>
     </>
   );
