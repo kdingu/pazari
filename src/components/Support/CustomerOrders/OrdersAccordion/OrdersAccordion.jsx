@@ -26,14 +26,13 @@ const Accordion = withStyles({
 const AccordionSummary = withStyles((theme) => ({
   root: {
     backgroundColor: "rgba(0, 0, 0, .03)",
-    transition: "background-color 80ms ease-in",
+    transition: "background-color 80ms ease-in, min-height 200ms ease-out",
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
     },
     borderBottom: "1px solid rgba(0, 0, 0, .125)",
     marginBottom: -1,
     minHeight: 56,
-    transition: "min-height 200ms ease-out",
     "&$expanded": {
       minHeight: 36,
     },
@@ -81,9 +80,11 @@ const OrdersAccordion = ({ orders = [{}, {}] }) => {
       {orders.length > 0 &&
         orders.map((order) => {
           let orderDate = new Date(order.created * 1000);
-          orderDate = `${orderDate.getDay()}/${
+          console.log(orderDate);
+          orderDate = `${orderDate.getDate()}/${
             orderDate.getMonth() + 1
           }/${orderDate.getFullYear()}`;
+          console.log(orderDate);
           return (
             <Accordion
               key={order.id}
