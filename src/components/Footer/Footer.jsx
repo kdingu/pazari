@@ -1,22 +1,7 @@
-import { Container, Grid, Typography, Button } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useStyles from "./style";
-
-const menuItems = [
-  {
-    title: "Pazari",
-    link: "/",
-  },
-  {
-    title: "Shporta",
-    link: "/cart",
-  },
-  {
-    title: "Suporti",
-    link: "/support",
-  },
-];
 
 const Footer = () => {
   const classes = useStyles();

@@ -91,7 +91,6 @@ const Search = () => {
   const dispatch = useDispatch();
   const [searchString, setSearchString] = useState("");
   const [noSearchResults, setNoSearchResults] = useState(false);
-  const [searching, setSearching] = useState(false);
   const filter = useSelector((state) => state.products.searchString);
 
   const handleSearch = () => {

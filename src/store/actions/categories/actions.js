@@ -12,7 +12,7 @@ export const setCategories = (categories) => ({
 
 export const fetchCategories = () => {
   return async (dispatch) => {
-    const { data, meta } = await commerce.categories.list();
+    const { data } = await commerce.categories.list();
     dispatch(setCategories(data));
   };
 };

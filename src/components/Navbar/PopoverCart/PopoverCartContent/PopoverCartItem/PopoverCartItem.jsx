@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import { Row, Item } from "@mui-treasury/components/flex";
 import { useDynamicAvatarStyles } from "@mui-treasury/styles/avatar/dynamic";

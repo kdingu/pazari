@@ -5,7 +5,7 @@ import {
   Typography,
   CardContent,
 } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
 import loadingComponentImage from "../../../assests/placeholder-transparent.png";
@@ -67,19 +67,11 @@ const Product = ({
               : setProductInDrawerAndOpenDrawer
           }
         >
-          {/* <CardMedia
-            className={classes.media}
-            image={
-              product.media.type === "image" && product.media.source
-                ? product.media.source
-                : noImageUrl
-            }
-            title={product.name}
-          /> */}
           <Image
             className={classes.media}
             aspectRatio={4 / 2.5}
-            cover={true.toString()}
+            cover
+            cover="true"
             src={
               product.media.type === "image" && product.media.source
                 ? product.media.source

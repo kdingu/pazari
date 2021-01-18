@@ -17,7 +17,12 @@ const OrderSuccess = () => {
   return (
     <div className={classes.mainWrapper}>
       <div className={classes.main}>
-        <img src={imageUrl} width={225} className={classes.img} />
+        <img
+          src={imageUrl}
+          alt="thumbs-up"
+          width={225}
+          className={classes.img}
+        />
         <Typography
           variant="h5"
           align="center"

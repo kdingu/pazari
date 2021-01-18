@@ -2,7 +2,7 @@ import { Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
 import { useForm, Controller } from "react-hook-form";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import issueCustomerToken from "../../../services/issueCustomerToken";
 import { generalActions } from "../../../store/actions";

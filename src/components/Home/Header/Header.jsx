@@ -1,4 +1,4 @@
-import { Container, Grid, InputBase, Typography } from "@material-ui/core";
+import { Container, Grid, InputBase } from "@material-ui/core";
 import useStyles from "./styles";
 
 const Header = () => {

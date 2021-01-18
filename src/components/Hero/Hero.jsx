@@ -28,7 +28,11 @@ const Hero = ({
       className={classes.main}
       style={noShadow ? stylesWithoutShadow : stylesWithShadow}
     >
-      <img className={classes.mainBackgroundImage} src={imageUrl} />
+      <img
+        className={classes.mainBackgroundImage}
+        alt="hero background image"
+        src={imageUrl}
+      />
       <div className={classes.overlay} />
       <Grid
         className={classes.grid}

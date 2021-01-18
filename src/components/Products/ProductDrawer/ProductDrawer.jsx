@@ -1,6 +1,5 @@
 import {
   Button,
-  CircularProgress,
   Divider,
   Drawer,
   FormControl,
@@ -13,7 +12,6 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useRef, useState } from "react";
 import useStyles from "./styles";
-import { AddShoppingCart } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cartActions,

@@ -6,7 +6,6 @@ import PopoverCartContent from "./PopoverCartContent/PopoverCartContent";
 import useStyles from "./styles";
 
 const PopoverCart = () => {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const badge = useSelector((state) => state.cart.total_items);

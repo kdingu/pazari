@@ -1,4 +1,3 @@
-import cloneDeep from "lodash.clonedeep";
 import { commerce } from "../../../lib/commerce";
 import * as C from "../../constant";
 

@@ -1,10 +1,9 @@
 import React from "react";
 import Divider from "@material-ui/core/Divider";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
-import { removeProductFromCartAsync } from "../../../../store/actions/cart/actions";
 import PopoverCartItem from "./PopoverCartItem/PopoverCartItem";
 import useStyles from "./style";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Typography, Button, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
