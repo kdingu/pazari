@@ -11,10 +11,10 @@ export default makeStyles((theme) => ({
       width: "100%",
       height: "100%",
       backgroundImage: `url(${bg})`,
-      backgroundSize: "cover",
+      backgroundSize: "300%",
       backgroundPosition: "center center",
+      opacity: "0.3",
       zIndex: "-1",
-      filter: "blur(5px)",
     },
   },
   main: {

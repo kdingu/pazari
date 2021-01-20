@@ -89,14 +89,14 @@ const Cart = () => {
   );
 
   return (
-    <>
+    <div className={classes.container}>
       <div className={classes.toolbar} />
       <Hero title="Shporta" />
       <Container className={classes.main}>
         <div className={classes.toolbar} />
         {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
       </Container>
-    </>
+    </div>
   );
 };
 

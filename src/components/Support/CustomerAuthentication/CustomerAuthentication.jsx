@@ -25,7 +25,9 @@ const CustomerAuthentication = () => {
           // get JWT for customer from api
           const response = await exchangeTokenForJWT(token);
           dispatch(generalActions.setCustomerId(response.data.customer_id));
-          setMessage("Sukses");
+          setMessage(
+            "Sukses, Po ju ridrejtojmë tek faqja e historisë së blerjeve..."
+          );
           setTimeout(() => {
             setRedirect(true);
           }, 2000);
@@ -45,7 +47,7 @@ const CustomerAuthentication = () => {
   ) : (
     <>
       <Container className={classes.main}>
-        <Typography variant="h4">{message}</Typography>
+        <Typography variant="h5">{message}</Typography>
       </Container>
     </>
   );

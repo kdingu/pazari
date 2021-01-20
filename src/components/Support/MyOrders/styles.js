@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
       left: 0,
       backgroundImage: `url(${bg})`,
       backgroundPosition: "center center",
-      backgroundSize: "cover",
+      backgroundSize: "300%",
       opacity: "0.3",
       zIndex: "-1",
     },

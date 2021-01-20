@@ -1,6 +1,23 @@
 import { makeStyles } from "@material-ui/core/styles";
+import bg from "../../assests/pazari-bg.svg";
 
 export default makeStyles((theme) => ({
+  container: {
+    paddingBottom: 16,
+    minHeight: "100vh",
+    position: "relative",
+    "&::before": {
+      content: "''",
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      backgroundImage: `url(${bg})`,
+      backgroundSize: "300%",
+      backgroundPosition: "center center",
+      zIndex: "-1",
+      opacity: "0.3",
+    },
+  },
   main: {
     marginBottom: "5%",
   },
