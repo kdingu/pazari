@@ -13,7 +13,10 @@ export default makeStyles((theme) => ({
     },
   },
   media: {
-    minHeight: "200px",
+    minHeight: "100%",
+    minWidth: "100%",
+    width: "100% !important",
+    height: "auto !important",
     top: "50% !important",
     transform: "translateY(-50%)",
   },

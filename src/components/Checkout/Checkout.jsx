@@ -28,17 +28,16 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState(2);
   const [loadingCheckout, setLoadingCheckout] = useState(false);
 
-  const generateTokenAndGetCountries = () => {
-    setLoadingCheckout(true);
-    dispatch(checkoutActions.generateCheckoutToken()) // create checkoutToken
-      .then(() => dispatch(checkoutActions.getShippingCountries())) // load available shipping countries for that token
-      .then(() => setLoadingCheckout(false));
-  };
-
   useEffect(() => {
     document.title = "Pazari - Arka";
     setActiveStep(0);
 
+    const generateTokenAndGetCountries = () => {
+      setLoadingCheckout(true);
+      dispatch(checkoutActions.generateCheckoutToken()) // create checkoutToken
+        .then(() => dispatch(checkoutActions.getShippingCountries())) // load available shipping countries for that token
+        .then(() => setLoadingCheckout(false));
+    };
     generateTokenAndGetCountries();
 
     const resetForm = () => {
@@ -48,6 +47,7 @@ const Checkout = () => {
     return () => {
       resetForm();
     };
+    // eslint-disable-next-line
   }, []);
 
   const Confirmation = () => <div>Confirm</div>;

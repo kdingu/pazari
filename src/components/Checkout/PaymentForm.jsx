@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { commerce } from "../../lib/commerce";
@@ -38,33 +38,33 @@ const PaymentForm = ({ back }) => {
 
   const [shippingPrice, setShippingPrice] = React.useState({ valid: false });
 
-  const fetchShippingPrice = async () => {
-    const checkoutTokenId = checkout.checkoutToken.id;
-    const shipping_option_id = checkout.formData.shippingOption;
-    const country = checkout.formData.shippingCountry;
-    const region = checkout.formData.shippingSubdivision;
+  useEffect(() => {
+    const fetchShippingPrice = async () => {
+      const checkoutTokenId = checkout.checkoutToken.id;
+      const shipping_option_id = checkout.formData.shippingOption;
+      const country = checkout.formData.shippingCountry;
+      const region = checkout.formData.shippingSubdivision;
 
-    try {
-      const { valid, price } = await commerce.checkout.checkShippingOption(
-        checkoutTokenId,
-        {
-          shipping_option_id,
-          country,
-          region,
-        }
-      );
-      setShippingPrice({
-        valid,
-        price,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  React.useEffect(() => {
+      try {
+        const { valid, price } = await commerce.checkout.checkShippingOption(
+          checkoutTokenId,
+          {
+            shipping_option_id,
+            country,
+            region,
+          }
+        );
+        setShippingPrice({
+          valid,
+          price,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchShippingPrice();
-  }, [checkout.checkoutToken.id]);
+    // eslint-disable-next-line
+  }, []);
 
   const Review = () => {
     let total =
@@ -127,7 +127,6 @@ const PaymentForm = ({ back }) => {
 
   const onCaptureCheckout = async (id, data) => {
     setLoading(true);
-    console.log("captureCheckout: ", id, data);
     try {
       // call commerce.checkout.capture
       const { customer_reference } = await commerce.checkout.capture(id, data);
@@ -147,13 +146,13 @@ const PaymentForm = ({ back }) => {
     dispatch(checkoutActions.setCardDetails(data));
 
     let items = {};
-    checkout.checkoutToken.live.line_items.map((item) => {
+    for (const item of checkout.checkoutToken.live.line_items) {
       const variants = {};
       for (const variant of item.variants) {
         variants[variant.variant_id] = variant.option_id;
       }
       items[item.id] = { quantity: item.quantity, variants };
-    });
+    }
 
     const orderData = {
       line_items: items,

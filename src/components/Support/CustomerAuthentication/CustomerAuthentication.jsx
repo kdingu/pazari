@@ -16,34 +16,32 @@ const CustomerAuthentication = () => {
   const { search } = useLocation();
   const { token } = queryString.parse(search);
 
-  // show backdrop on component mount
   useEffect(() => {
     document.title = "Pazari - Autentikimi i klientit";
-
-    const exchangeToken = async (token) => {
-      try {
-        // get JWT for customer from api
-        const response = await exchangeTokenForJWT(token);
-        dispatch(generalActions.setCustomerId(response.data.customer_id));
-        setMessage("Sukses");
-        setTimeout(() => {
-          setRedirect(true);
-        }, 2000);
-      } catch (error) {
-        dispatch(generalActions.setBackdrop(false));
-        setMessage("Problem");
-        console.log(error);
+    const exchangeToken = async () => {
+      if (token) {
+        try {
+          dispatch(generalActions.setBackdrop(true));
+          // get JWT for customer from api
+          const response = await exchangeTokenForJWT(token);
+          dispatch(generalActions.setCustomerId(response.data.customer_id));
+          setMessage("Sukses");
+          setTimeout(() => {
+            setRedirect(true);
+          }, 2000);
+        } catch (error) {
+          dispatch(generalActions.setBackdrop(false));
+          setMessage("Problem");
+          console.log(error);
+        }
       }
     };
-
-    dispatch(generalActions.setBackdrop(true));
-    if (token) {
-      exchangeToken(token);
-    }
+    exchangeToken();
+    // eslint-disable-next-line
   }, []);
 
   return redirect ? (
-    <Redirect to="/customer_orders" state={123456} />
+    <Redirect to="/customer_orders" />
   ) : (
     <>
       <Container className={classes.main}>

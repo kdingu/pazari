@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   InputLabel,
   Select,
@@ -44,9 +44,10 @@ const AddressForm = ({ checkoutId, next }) => {
 
   const options = useSelector((state) => state.checkout.shippingOptions);
   const option = useSelector((state) => state.checkout.formData.shippingOption);
-  let prevCountry;
-  let prevSubdivision;
   const dispatch = useDispatch();
+
+  let prevCountry = useRef("");
+  let prevSubdivision = useRef("");
 
   useEffect(() => {
     if (!!option) {
@@ -57,12 +58,12 @@ const AddressForm = ({ checkoutId, next }) => {
   }, [option]);
 
   useEffect(() => {
-    prevCountry = country;
-    prevSubdivision = subdivision;
+    prevCountry.current = country;
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    if (country && country !== prevCountry) {
+    if (country && country !== prevCountry.current) {
       dispatch(
         checkoutActions.getShippingSubdivisions(checkoutId, country)
       ).then((res) => {
@@ -74,10 +75,12 @@ const AddressForm = ({ checkoutId, next }) => {
         }
       });
     }
+    // eslint-disable-next-line
   }, [country]);
 
   useEffect(() => {
-    if (country && subdivision && subdivision !== prevSubdivision) {
+    console.log(country, subdivision, prevSubdivision.current);
+    if (country && subdivision && subdivision !== prevSubdivision.current) {
       dispatch(
         checkoutActions.getShippingOptions(checkoutId, country, subdivision)
       )
@@ -85,13 +88,12 @@ const AddressForm = ({ checkoutId, next }) => {
           const opId = op[0]?.id || false;
           if (opId) dispatch(checkoutActions.setShippingOption(opId));
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     } else {
       dispatch(checkoutActions.setShippingOptions([]));
       dispatch(checkoutActions.setShippingOption(""));
     }
+    // eslint-disable-next-line
   }, [subdivision]);
 
   const handleCountryChange = (e) => {

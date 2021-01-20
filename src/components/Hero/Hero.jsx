@@ -30,7 +30,7 @@ const Hero = ({
     >
       <img
         className={classes.mainBackgroundImage}
-        alt="hero background image"
+        alt="hero background"
         src={imageUrl}
       />
       <div className={classes.overlay} />

@@ -22,8 +22,10 @@ const MySnackbar = () => {
     setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
   };
 
+  // prevent error snackbar from showing on first mount... maybe unnecessary ?
   useEffect(() => {
     if (errorsCount && !prevErrors.current) prevErrors.current = errorsCount;
+    // eslint-disable-next-line
   }, []);
 
   // watch changes in cart total items

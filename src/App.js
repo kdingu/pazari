@@ -39,6 +39,7 @@ const App = () => {
     if (customer?.jwt) {
       dispatch(generalActions.setCustomerId(customer.customer_id));
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const App = () => {
       }
     };
     if (customerId && customerId !== prevCustomerId.current) getOrders();
+    // eslint-disable-next-line
   }, [customer]);
 
   return (

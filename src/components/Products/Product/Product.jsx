@@ -70,8 +70,6 @@ const Product = ({
           <Image
             className={classes.media}
             aspectRatio={4 / 2.5}
-            cover
-            cover="true"
             src={
               product.media.type === "image" && product.media.source
                 ? product.media.source

@@ -33,6 +33,7 @@ const CustomerOrders = () => {
       }
     };
     if (customerId && customerId !== prevCustomerId.current) getOrders();
+    // eslint-disable-next-line
   }, [customerId]);
 
   const logout = () => {

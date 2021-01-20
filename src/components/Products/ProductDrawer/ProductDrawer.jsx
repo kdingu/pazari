@@ -43,6 +43,7 @@ const ProductDrawer = () => {
   useEffect(() => {
     if (selectedOptionsPrice !== 0) setSelectedOptionsPrice(0);
     setState({});
+    // eslint-disable-next-line
   }, [product]);
 
   useEffect(() => {
@@ -66,6 +67,7 @@ const ProductDrawer = () => {
     if (Object.keys(state).length !== 0) {
       updatePrice();
     }
+    // eslint-disable-next-line
   }, [state]);
 
   const closeDrawer = () => {
