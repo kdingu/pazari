@@ -4,6 +4,8 @@ import bg from "../../../assests/pazari-bg.svg";
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   main: {
+    paddingTop: "5%",
+    paddingBottom: "5%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -14,9 +16,6 @@ export default makeStyles((theme) => ({
       height: "100%",
       top: 0,
       left: 0,
-      // backgroundImage: `url(${bg})`,
-      // backgroundPosition: "center center",
-      // backgroundSize: "cover",
       opacity: "0.3",
       zIndex: "-1",
     },
