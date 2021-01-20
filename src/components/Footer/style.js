@@ -3,8 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
   main: {
     color: "#0f0f0f",
-    position: "fixed",
-    bottom: 0,
     padding: "0",
     backgroundColor: theme.palette.primary.main,
     boxShadow: "0px -10px 15px rgba(0,0,0,0.15)",
