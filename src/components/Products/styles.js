@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
   main: {
     width: "100%",
     paddingTop: "5%",
-    paddingBottom: "5%",
+    paddingBottom: "10%",
   },
   progressBar: {
     width: "100%",
