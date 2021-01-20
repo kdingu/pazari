@@ -144,17 +144,18 @@ const OrdersAccordion = ({ orders = [{}, {}] }) => {
                           <React.Fragment key={item.id}>
                             <Grid item xs={6}>
                               <Typography>{item.name}</Typography>
-                              {item.variants.length &&
-                                item.variants.map((variant, index) => (
-                                  <Typography
-                                    key={variant.variant_id}
-                                    variant="caption"
-                                  >
-                                    {index !== 0 ? " - " : null}
-                                    {variant.variant_name}:{" "}
-                                    {variant.option_name}
-                                  </Typography>
-                                ))}
+                              {item.variants.length
+                                ? item.variants.map((variant, index) => (
+                                    <Typography
+                                      key={variant.variant_id}
+                                      variant="caption"
+                                    >
+                                      {index !== 0 ? " - " : null}
+                                      {variant.variant_name}:{" "}
+                                      {variant.option_name}
+                                    </Typography>
+                                  ))
+                                : null}
                             </Grid>
                             <Grid item xs={3} align="right">
                               <Typography>{item.quantity}</Typography>
