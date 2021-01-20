@@ -62,9 +62,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Backdrop />
       <Router>
-        <CssBaseline />
         <Navbar />
         <Snackbar />
 

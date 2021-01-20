@@ -11,6 +11,48 @@ const theme = createMuiTheme({
       },
     },
   },
+  typography: {
+    h1: {
+      fontFamily: "Assistant, Roboto",
+    },
+    h2: {
+      fontFamily: "Assistant, Roboto",
+    },
+    h3: {
+      fontFamily: "Assistant, Roboto",
+    },
+    h4: {
+      fontFamily: "Assistant, Roboto",
+    },
+    h5: {
+      fontFamily: "Assistant, Roboto",
+    },
+    h6: {
+      fontFamily: "Assistant, Roboto",
+    },
+    subtitle1: {
+      fontFamily: "Yura, Roboto",
+    },
+    subtitle2: {
+      fontFamily: "Yura, Roboto",
+    },
+    body1: {
+      fontFamily: "Rubik, Roboto",
+    },
+    body2: {
+      fontFamily: "Rubik, Roboto",
+    },
+    button: {
+      fontFamily: "Jura, Roboto",
+      fontWeight: 600,
+    },
+    caption: {
+      fontFamily: "Yura, Roboto",
+    },
+    overline: {
+      fontFamily: "Yura, Roboto",
+    },
+  },
   palette: {
     common: { black: "#000", white: "#fff" },
     background: { paper: "#fff", default: "#fafafa", light: "#84DCF1" },
