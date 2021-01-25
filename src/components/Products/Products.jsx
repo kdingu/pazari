@@ -60,7 +60,7 @@ const Products = () => {
                   <Product raised product={product} />
                 </Grid>
               ))
-            : [1, 2, 3, 4].map((a, index) => (
+            : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((a, index) => (
                 <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
                   <Product raised dummy />
                 </Grid>

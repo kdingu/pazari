@@ -12,6 +12,7 @@ import loadingComponentImage from "../../../assests/placeholder-transparent.png"
 import { useDispatch } from "react-redux";
 import { productActions } from "../../../store/actions";
 import Image from "material-ui-image";
+import { Skeleton } from "@material-ui/lab";
 
 const Product = ({
   product,
@@ -30,29 +31,10 @@ const Product = ({
 
   if (dummy) {
     return (
-      <div style={{ opacity: "0.5" }}>
-        <Card raised={raised} className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={loadingComponentImage}
-              title={"Loading Image"}
-            />
-            <CardContent>
-              <Typography
-                className={classes.productName}
-                gutterBottom
-                variant="h6"
-                component="h6"
-              >
-                Duke u ngarkuar ...
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                10,000.00 ALL
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+      <div>
+        <Skeleton variant="rect" height={220} />
+        <Skeleton variant="text" />
+        <Skeleton variant="text" />
       </div>
     );
   }
