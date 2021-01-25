@@ -12,7 +12,6 @@ import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
 import { useDispatch } from "react-redux";
 import { productActions } from "../../../store/actions";
-import Image from "material-ui-image";
 import { Skeleton } from "@material-ui/lab";
 import { useCoverCardMediaStyles } from "@mui-treasury/styles/cardMedia/cover";
 import { useLightTopShadowStyles } from "@mui-treasury/styles/shadow/lightTop";
