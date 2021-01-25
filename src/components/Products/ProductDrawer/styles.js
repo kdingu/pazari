@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
   main: {
     width: "80vw",
     padding: 56,
+    paddingTop: 106,
   },
   loader: {
     zIndex: 1000,
