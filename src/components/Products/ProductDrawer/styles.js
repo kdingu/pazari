@@ -4,6 +4,10 @@ export default makeStyles((theme) => ({
   main: {
     width: "80vw",
     padding: 56,
+    [theme.breakpoints.down("sm")]: {
+      padding: 16,
+      paddingTop: 106,
+    },
     paddingTop: 106,
   },
   loader: {
@@ -22,5 +26,19 @@ export default makeStyles((theme) => ({
     overflow: "hidden",
     whiteSpace: "nowrap",
     textOverflow: "ellipsis",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+    },
+  },
+  productPrice: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 30,
+    },
+  },
+  btn: {
+    minWidth: "250px",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "100%",
+    },
   },
 }));

@@ -59,13 +59,19 @@ const Products = () => {
           ? productsByCreated.map((product, index) => {
               if (index > 3) return null;
               return (
-                <Grid item key={product.id} xs={12} md={6} lg={3}>
+                <Grid
+                  item
+                  key={product.id}
+                  xs={6}
+                  lg={3}
+                  className={classes.latestGridItem}
+                >
                   <LatestProduct product={product} />
                 </Grid>
               );
             })
           : [1, 2, 3, 4].map((a, index) => (
-              <Grid item key={index} xs={12} md={6} lg={3}>
+              <Grid item key={index} xs={6} lg={3}>
                 <LatestProduct dummy />
               </Grid>
             ))}

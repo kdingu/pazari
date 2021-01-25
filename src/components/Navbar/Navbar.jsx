@@ -50,7 +50,7 @@ const Navbar = () => {
               variant="outlined"
               component={Link}
               to="/support"
-              style={{ marginRight: "16px" }}
+              className={classes.btn}
             >
               Suporti i blerjeve
             </Button>

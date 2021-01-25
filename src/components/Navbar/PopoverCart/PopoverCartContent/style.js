@@ -8,6 +8,9 @@ export default makeStyles((theme) => ({
     overflowY: "scroll",
     width: "100%",
     minWidth: "350px",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "100%",
+    },
     maxWidth: "500px",
     maxHeight: "400px",
     borderRadius: "3px",
@@ -17,12 +20,20 @@ export default makeStyles((theme) => ({
     color: theme.palette.text.primary,
     backgroundColor: "rgba(0, 0, 0, 0.02)",
     borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+    display: "flex",
+    alignItems: "center",
   },
   headerTitle: {
     textTransform: "uppercase",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "15px",
+    },
   },
   headerLink: {
     color: theme.palette.text.primary,
+    [theme.breakpoints.down("md")]: {
+      padding: 0,
+    },
   },
   headline: {
     color: "#122740",
@@ -31,6 +42,7 @@ export default makeStyles((theme) => ({
   },
   emptyCartMessage: {
     marginTop: generalMargin,
+    padding: "6px",
   },
   link: {
     color: "#2281bb",

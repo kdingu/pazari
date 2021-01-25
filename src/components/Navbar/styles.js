@@ -34,6 +34,10 @@ export default makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  btn: {
+    margin: "6px",
+    textAlign: "center",
+  },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,

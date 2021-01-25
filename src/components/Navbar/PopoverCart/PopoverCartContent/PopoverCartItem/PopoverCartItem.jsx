@@ -35,7 +35,7 @@ const PopoverCartItem = ({ item }) => {
         />
       </Item>
       <Row wrap grow gap={0.5} minWidth={0}>
-        <Item grow minWidth={0}>
+        <Item grow minWidth={0} className={classes.itemName}>
           <Tooltip
             title={item.name}
             aria-label={item.name}

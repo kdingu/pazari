@@ -19,6 +19,9 @@ export default makeStyles((theme) => ({
   },
   latestProductsContainer: {
     minHeight: "48vh",
+    [theme.breakpoints.down("md")]: {
+      height: "100vh",
+    },
     position: "relative",
     "&:hover::after": {
       opacity: 0,
@@ -43,10 +46,16 @@ export default makeStyles((theme) => ({
       backgroundColor: "rgba(0,0,0,0.65)",
     },
   },
+  latestGridItem: {
+    border: "1px solid black",
+    [theme.breakpoints.down("md")]: {
+      height: "50%",
+    },
+  },
   main: {
     width: "100%",
-    paddingTop: "10%",
-    paddingBottom: "10%",
+    paddingTop: "5%",
+    paddingBottom: "5%",
   },
   titleWrapper: {
     display: "flex",
@@ -60,12 +69,6 @@ export default makeStyles((theme) => ({
     letterSpacing: "3px",
     fontWeight: "200",
     fontSize: "25px",
-  },
-  dash: {
-    boxShadow: "0 5px 10px 5px rgba(0,0,0,0.15)",
-    height: 2,
-    width: "100%",
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   progressBar: {
     width: "100%",

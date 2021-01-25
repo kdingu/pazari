@@ -29,7 +29,7 @@ const PopoverCartContent = ({ closePopoverCart }) => {
             onClick={closePopoverCart}
             className={classes.headerLink}
           >
-            <Typography>Shiko shportën</Typography>
+            <Typography className={classes.btn}>Shiko shportën</Typography>
           </Button>
         </Item>
       </Row>
@@ -38,7 +38,7 @@ const PopoverCartContent = ({ closePopoverCart }) => {
         <>
           {cart.line_items.map((item, index) => (
             <Row key={item.id} className={classes.item}>
-              <Item grow={1}>
+              <Item grow={1} style={{ maxWidth: "100%" }}>
                 <PopoverCartItem item={item} />
                 {index === cart.line_items.length - 1 ? null : (
                   <Divider variant="middle" className={classes.divider} />

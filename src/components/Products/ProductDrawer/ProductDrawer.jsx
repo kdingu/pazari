@@ -182,7 +182,7 @@ const ProductDrawer = () => {
                     {product.name}
                   </Typography>
                 </Tooltip>
-                <Typography variant="h3">
+                <Typography className={classes.productPrice} variant="h3">
                   {formatter.format(product.price.raw + selectedOptionsPrice)}
                 </Typography>
               </Grid>
@@ -225,7 +225,7 @@ const ProductDrawer = () => {
                   disableElevation
                   color="secondary"
                   type="submit"
-                  style={{ minWidth: "250px" }}
+                  className={classes.btn}
                 >
                   Shto në shportë
                 </Button>
@@ -238,7 +238,7 @@ const ProductDrawer = () => {
                       variant="outlined"
                       disableElevation
                       color="primary"
-                      style={{ minWidth: "250px" }}
+                      className={classes.btn}
                     >
                       Shiko Shportën
                     </Button>
@@ -261,7 +261,8 @@ const ProductDrawer = () => {
                         <Grid
                           key={product.id}
                           item
-                          xs={6}
+                          xs={12}
+                          md={6}
                           style={{ marginTop: "26px" }}
                         >
                           <Product
