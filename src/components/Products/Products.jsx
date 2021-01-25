@@ -19,6 +19,8 @@ const Products = () => {
 
   const { data, meta } = useSelector((state) => state.products);
 
+  const productsByCreated = sortBy(data, ["created"]);
+  productsByCreated.reverse();
   const productsByName = sortBy(data, ["name"]);
 
   const handlePageChange = (page) => {
@@ -53,8 +55,8 @@ const Products = () => {
 
       {/* latest products */}
       <Grid container spacing={0} className={classes.latestProductsContainer}>
-        {data.length
-          ? data.map((product, index) => {
+        {productsByCreated.length
+          ? productsByCreated.map((product, index) => {
               if (index > 3) return null;
               return (
                 <Grid item key={product.id} xs={12} md={6} lg={3}>
