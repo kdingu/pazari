@@ -1,14 +1,12 @@
 import {
   Card,
   CardActionArea,
-  CardMedia,
   Typography,
   CardContent,
 } from "@material-ui/core";
 import React from "react";
 import useStyles from "./styles";
 import { noImageUrl } from "../../../constant";
-import loadingComponentImage from "../../../assests/placeholder-transparent.png";
 import { useDispatch } from "react-redux";
 import { productActions } from "../../../store/actions";
 import Image from "material-ui-image";
