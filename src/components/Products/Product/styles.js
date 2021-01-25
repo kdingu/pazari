@@ -38,9 +38,10 @@ export default makeStyles((theme) => ({
     height: "100%",
   },
   content: {
+    overflow: "hidden",
     transition: "background-color 300ms ease-in-out",
     height: "100%",
-    boxShadow: "inset 0 0 15px 5px rgba(0,0,0,0.3)",
+    boxShadow: "inset 0 0 25px 3px rgba(0,0,0,0.3)",
     backgroundColor: "rgba(0,0,0,0.3)",
     padding: 24,
     "&:hover": {

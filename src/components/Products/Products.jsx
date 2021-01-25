@@ -10,6 +10,7 @@ import useStyles from "./styles";
 import { Pagination } from "@material-ui/lab";
 import { generalActions, productActions } from "../../store/actions";
 import LatestProduct from "./Product/LatestProduct";
+import sortBy from "lodash.sortby";
 
 const Products = () => {
   const classes = useStyles();
@@ -17,6 +18,8 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const { data, meta } = useSelector((state) => state.products);
+
+  const productsByName = sortBy(data, ["name"]);
 
   const handlePageChange = (page) => {
     if (page === meta.pagination.current_page) return null;
@@ -60,8 +63,8 @@ const Products = () => {
               );
             })
           : [1, 2, 3, 4].map((a, index) => (
-              <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-                <Product raised dummy />
+              <Grid item key={index} xs={12} md={6} lg={3}>
+                <LatestProduct dummy />
               </Grid>
             ))}
       </Grid>
@@ -74,25 +77,21 @@ const Products = () => {
 
       {/* all products */}
       <Container maxWidth="xl" className={classes.main}>
-        <Grid container spacing={2} className={classes.big}>
+        <Grid container spacing={1} className={classes.big}>
           <Grid item xs={12} align="center">
-            <div className={classes.titleWrapper}>
-              <span className={classes.dash}></span>
-              <Typography className={classes.title} variant="h4">
-                Lista e produkteve
-              </Typography>
-              <span className={classes.dash}></span>
-            </div>
+            <Typography className={classes.title} variant="h4">
+              Lista e produkteve
+            </Typography>
           </Grid>
           {/* products */}
-          {data.length
-            ? data.map((product) => (
+          {productsByName.length
+            ? productsByName.map((product) => (
                 <Grid item key={product.id} xs={12} sm={6} md={4} lg={3} xl={2}>
                   <Product raised product={product} />
                 </Grid>
               ))
             : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((a, index) => (
-                <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                <Grid item key={index} xs={12} sm={6} md={4} lg={3} xl={2}>
                   <Product raised dummy />
                 </Grid>
               ))}

@@ -31,10 +31,8 @@ const LatestProduct = ({ product, dummy = false }) => {
 
   if (dummy) {
     return (
-      <div>
-        <Skeleton variant="rect" height={220} />
-        <Skeleton variant="text" />
-        <Skeleton variant="text" />
+      <div style={{ width: "100%", height: "100%" }}>
+        <Skeleton animation="wave" variant="rect" height="100%" />
       </div>
     );
   }
