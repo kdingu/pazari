@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   IconButton,
+  Tooltip,
 } from "@material-ui/core";
 import PopoverCart from "./PopoverCart/PopoverCart";
 import logo from "../../assests/pazari-logo.png";
@@ -36,9 +37,14 @@ const Navbar = () => {
           </Typography>
           <div className={classes.grow}></div>
           {customer?.id && customer.orders?.data?.length > 0 ? (
-            <IconButton component={Link} to="/support">
-              <AccountCircleIcon />
-            </IconButton>
+            <Tooltip
+              title={`${customer.orders.data[0].customer.firstname} ${customer.orders.data[0].customer.lastname}`}
+              arrow
+            >
+              <IconButton component={Link} to="/support">
+                <AccountCircleIcon />
+              </IconButton>
+            </Tooltip>
           ) : (
             <Button
               variant="outlined"
