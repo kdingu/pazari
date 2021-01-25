@@ -203,7 +203,7 @@ const AddressForm = ({ checkoutId, next }) => {
                   {options.map(
                     ({ id, description, price: { formatted_with_code } }) => (
                       <option key={id} value={id}>
-                        {description} - ({formatted_with_code})
+                        {description}
                       </option>
                     )
                   )}
